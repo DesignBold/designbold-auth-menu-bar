@@ -12,7 +12,7 @@ Plugin use for Wordpress and integration of Designbold main menu and Designbold 
 
 This section describes how to install the plugin and get it working.
 
-1 Clone this responsitory, Upload the plugin files to the `/wp-content/plugins/designitmenu` directory, or install the plugin through the WordPress plugins screen directly.
+1 Clone this responsitory, Upload the plugin files to the `/wp-content/plugins/` directory, or install the plugin through the WordPress plugins screen directly.
 
 2 Activate the plugin through the 'Plugins' screen in WordPress
 
