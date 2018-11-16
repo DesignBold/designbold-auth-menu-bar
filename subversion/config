@@ -1,0 +1,2 @@
+*.png = svn:mime-type=image/png
+*.jpg = svn:mime-type=image/jpeg
