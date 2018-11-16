@@ -1,0 +1,634 @@
+/*-------------------------------HEADER------------------------------------*/
+
+@import "variables";
+
+
+.db-header {
+    background-color: #fff;
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: $fs14;
+    color: $text-color;
+
+    a {
+
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+
+
+
+.db-header {
+
+    background-color: #fff;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+
+    padding: 10px 0px;
+    transition: all ease 0.4s;
+
+    .pull-left {
+        position: relative;
+        min-width: 120px;
+        min-height: 30px;
+
+    }
+
+
+    a.logo {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        margin: 2px 0px 0px 0px;
+
+        img {
+            height: 30px;
+        }
+    }
+
+    a.logo-white {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        margin: 2px 0px 0px 0px;
+
+        img {
+            height: 30px;
+
+        }
+    }
+
+    .main-menu {
+        float: left;
+        margin: 0px 0px 0px 140px;
+
+        ul {
+
+            margin: 0px;
+            padding: 0px;
+
+            list-style: none;
+
+            li {
+                float: left;
+                margin: 0px 0px 0px 20px;
+
+                a {
+                    line-height: 30px;
+                    color: $text-color;
+                    transition: all ease 0.4s;
+                    font-weight: 600;
+
+                    &:hover {
+                        color: $active-color;
+                    }
+
+                    .fa-plus {
+                        font-size: 10px;
+                        color: $active-color;
+                        position: relative;
+                        top: -5px;
+                        transform: all ease 0.4s;
+                    }
+
+                }
+            }
+        }
+    }
+
+    .user-link {
+
+
+        float: left;
+
+        a {
+            float: left;
+            line-height: 30px;
+            padding: 0px 20px;
+            border-radius: 20px;
+            margin: 0px 0px 0px 10px;
+            color: $text-color;
+            font-weight: 600;
+            transition: all ease 0.4s;
+
+            span {
+                transform: all ease 0.4s;
+            }
+
+            &.login {
+
+                background-color: $active-color;
+                color: #fff;
+
+                &:hover {
+                    background-color: lighten($active-color, 10%);
+                }
+            }
+
+            &.signup {
+
+                padding: 0px 10px;
+            }
+
+        }
+    }
+
+    .search-icon {
+        float: left;
+        line-height: 30px;
+        width: 30px;
+        margin: 0px 0px 0px 0px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        transform: all ease 0.4s;
+
+        i {
+
+            transform: all ease 0.4s;
+        }
+
+        &:hover {
+            color: $active-color;
+
+        }
+
+    }
+
+    .menu-icon {
+        float: left;
+        line-height: 30px;
+        width: 30px;
+        margin: 0px 0px 0px 0px;
+        font-size: 20px;
+        cursor: pointer;
+        text-align: center;
+        transform: all ease 0.4s;
+
+        &:hover {
+            color: $active-color;
+        }
+    }
+
+    .user-info {
+        float: left;
+        margin: 0px 10px 0px 10px;
+        position: relative;
+
+        .user-avatar {
+            width: 30px;
+            cursor: pointer;
+            height: 30px;
+
+            img {
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                display: block;
+            }
+        }
+
+        .user-type {
+            position: absolute;
+            top: 0px;
+            right: -20px;
+            border-radius: 2px;
+            line-height: 13px;
+            height: 13px;
+            color: #fff;
+            z-index: 999;
+            font-size: 8px;
+            padding: 0px 5px;
+            background-color: $pro-color;
+        }
+
+    }
+
+
+    .user-info-dropdown {
+
+        font-size: $font-size-base;
+        left: unset !important;
+        margin: 25px 0px 0px 0px;
+        top: 100% !important;
+        right: -15px !important;
+
+        transform: none !important;
+
+
+        min-width: 300px;
+
+        margin-left: 0px;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
+        border: none;
+        border-radius: 3px;
+
+
+        &:before {
+            bottom: 100%;
+            right: 19px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-color: rgba(194, 225, 245, 0);
+            border-bottom-color: #ddd;
+            border-width: 11px;
+            margin-left: -11px;
+        }
+
+        &:after {
+            bottom: 100%;
+            right: 19px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-color: rgba(136, 183, 213, 0);
+            border-bottom-color: #fff;
+            border-width: 10px;
+            margin-left: -10px;
+        }
+
+
+
+
+        &:before {
+            left: unset !important;
+            right: 19px;
+        }
+
+        &:after {
+            left: unset !important;
+            right: 19px;
+        }
+
+        li {
+
+            &.current {
+                background-color: $active-color;
+
+                a {
+                    color: #fff;
+                }
+
+                &:hover {
+                    opacity: 0.9;
+                    background-color: $active-color;
+
+                    a {
+                        background-color: $active-color;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    .user-head {
+        padding: 15px 15px 10px 70px;
+
+        .uh-avatar {
+            width: 40px;
+            margin: 0px 0px 0px -55px;
+            height: 40px;
+            float: left;
+            border-radius: 50%;
+
+            img {
+                display: block;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+        }
+
+        h3 {
+
+            font-size: $fs16;
+
+            margin: -5px 0px 0px 0px;
+            white-space: nowrap;
+            max-width: 600px;
+            padding: 5px 0px 0px 0px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            .upgrade {
+                display: inline-block;
+                color: $pro-color;
+                padding: 1px 5px;
+                border-radius: 3px;
+                font-size: $fs10;
+                border: 1px solid $pro-color;
+                position: relative;
+                margin: 0px 0px 0px 7px;
+                top: -5px;
+
+                transition: all ease 0.3s;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: $pro-color;
+                    color: #fff;
+                }
+            }
+
+        }
+
+        p {
+            font-size: $fs12;
+            margin: 0px;
+            color: $text-color-meta;
+        }
+    }
+
+    .line-under-stock {
+        height: 1px;
+        margin: 10px 0px 10px 0px;
+        background-color: $border-color;
+
+    }
+
+    .user-balance {
+        padding: 0px 15px;
+        white-space: nowrap;
+
+        .db-coins {
+            p {
+                font-size: $font-size-base - 1/16;
+
+            }
+        }
+
+        .user-stock {
+            display: block;
+            margin: 10px 0px 0px 0px;
+
+            p {
+                margin: 0px 0px 0px 0px;
+                font-size: $fs14 - 1/16;
+
+            }
+
+
+        }
+
+
+        .db-stock-flex {
+            display: flex;
+
+            label {
+                line-height: 15px;
+                margin: 0px 0px 0px 5px;
+                font-size: $fs14 - 1/16;
+
+            }
+
+            .db-stock-progress {
+                width: 100%;
+                padding: 6px 0px 0px 0px;
+            }
+
+            .stock-progress {
+
+                display: block;
+                width: 100%;
+                position: relative;
+                background-color: $border-color;
+                height: 7px;
+                border-radius: 5px;
+
+
+                .stock-progress-value {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    bottom: 0px;
+                    background-color: $active-color;
+                    border-radius: 5px;
+                }
+
+            }
+        }
+    }
+
+    .user-list-menu {
+        padding: 0px 0px;
+        list-style: none;
+        margin: 0px;
+
+        li {
+            padding: 0px;
+            margin: 0px;
+
+            a {
+                display: block;
+                padding: 8px 15px;
+                color: $text-color;
+
+
+                i {
+
+                    width: 25px;
+                    display: inline-block;
+                }
+
+
+
+            }
+
+            &:hover {
+                a {
+
+                    background-color: #f5f5f5;
+                }
+            }
+
+            &.active {
+                a {
+                    background-color: #f5f5f5;
+                    font-weight: 600;
+                }
+            }
+        }
+
+    }
+
+
+    .menu-res {
+        position: absolute;
+        top: 100%;
+        left: 0px;
+        right: 0px;
+        border-top: 1px solid $border-color;
+        background-color: #fff;
+        z-index: 100;
+        display: none;
+        box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+
+        ul {
+
+            margin: 0px;
+            padding: 0px 0px;
+
+            list-style: none;
+
+            li {
+                display: block;
+                margin: 0px;
+                padding: 0px;
+
+
+                a {
+                    line-height: 35px;
+                    color: $text-color;
+                    transition: all ease 0.4s;
+                    font-weight: 600;
+                    padding: 0px 15px;
+                    display: block;
+
+                    &:hover {
+                        color: $active-color;
+                        background-color: $border-color;
+                    }
+
+
+                }
+            }
+        }
+
+
+    }
+
+    @media screen and (min-width: 992px) {
+        .menu-res {
+            display: none !important;
+
+        }
+    }
+
+}
+
+
+
+
+.db-coins {
+    line-height: 30px;
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+
+    .db-coins-icon {
+        float: left;
+        width: 30px;
+        height: 30px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0px 2px 0px 0px;
+        background-image: url(#{$path_default}/images/icon/coins.svg);
+        background-size: 22px auto;
+    }
+
+    p {
+        line-height: 30px;
+        display: inline-block;
+        margin: 0px;
+
+    }
+
+    &.db-bonus-coins {
+        .db-coins-icon {
+            float: left;
+
+            background-image: url(#{$path_default}/images/icon/bonus-coins.svg);
+
+
+        }
+    }
+
+    &.text-gray {
+        p {
+            line-height: 30px;
+            display: inline-block;
+            margin: 0px;
+
+
+            strong {
+
+                font-weight: 700;
+
+            }
+        }
+
+    }
+}
+
+.db-stocks {
+    line-height: 30px;
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+
+    .db-stocks-icon {
+        float: left;
+
+        width: 20px;
+        height: 30px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0px 0px 0px 0px;
+
+        i {
+            display: block;
+            line-height: 30px;
+            font-size: 15px;
+            color: $active-color;
+        }
+
+
+    }
+
+    p {
+        line-height: 30px;
+        display: inline-block;
+        margin: 0px;
+        color: #fff;
+
+        strong {
+
+            font-weight: 700;
+            color: #fff;
+        }
+    }
+
+
+    &.text-gray {
+        p {
+            line-height: 30px;
+            display: inline-block;
+            margin: 0px;
+
+
+            strong {
+
+                font-weight: 700;
+
+            }
+        }
+
+    }
+}

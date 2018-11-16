@@ -1,0 +1,138 @@
+{
+	"header" : {
+		"home" : "https://designbold.com",
+		"logo" : "https://db-static.imgix.net/dbcream/main/images/logo.svg",
+		"menu_item" : [
+			{
+				"title" : "Workspace",
+				"class" : "db-text",
+				"link" : "https://www.designbold.com/workspace",
+				"target" : "_blank"
+			},
+			{
+				"title" : "Layouts",
+				"class" : "db-text",
+				"link" : "https://www.designbold.com/collection",
+				"target" : "_blank"
+			},
+			{
+				"title" : "Pricing",
+				"class" : "db-text",
+				"link" : "https://www.designbold.com/pricing",
+				"target" : "_blank"
+			},
+			{
+				"title" : "Integration API",
+				"class" : "db-text",
+				"link" : "https://developers.designbold.com/document/designit/",
+				"target" : "_blank"
+			},
+			{
+				"title" : "New Design",
+				"class" : "db-text",
+				"link" : "https://www.designbold.com/collection/create-new",
+				"target" : "_blank",
+				"icon" : "<i class=\"fal fa-plus\"></i>"
+			}
+		],
+		"menu_res" : [
+			{
+				"title" : "Workspace",
+				"class" : "db-text",
+				"link" : "https://designbold.com/workspace",
+				"target" : "_blank"
+			},
+			{
+				"title" : "Layouts",
+				"class" : "db-text",
+				"link" : "https://designbold.com/collection",
+				"target" : "_blank"
+			},
+			{
+				"title" : "Pricing",
+				"class" : "db-text",
+				"link" : "https://designbold.com/pricing",
+				"target" : "_blank"
+			},
+			{
+				"title" : "Integration API",
+				"class" : "db-text",
+				"link" : "https://designbold.com/document/designit/",
+				"target" : "_blank"
+			},
+			{
+				"title" : "New Design",
+				"class" : "db-text",
+				"link" : "https://designbold.com/collection/create-new",
+				"target" : "_blank",
+				"icon" : "<i class=\"fal fa-plus\"></i>"
+			}
+		]
+	},
+	"footer" : {
+		"footer_left" : {
+			"logo" : "https://db-static.imgix.net/dbcream/main/images/logo1.svg",
+			"logo_href" : "",
+			"social" : [
+				{
+					"facebook" : "https://www.facebook.com/designbolddotcom/",
+					"target" : "_blank",
+					"rel" : "nofollow",
+					"icon" : "<i class=\"fab fa-facebook-square\"></i>"
+				},
+				{
+					"twitter" : "https://twitter.com/DesignBold_",
+					"target" : "_blank",
+					"rel" : "nofollow",
+					"icon" : "<i class=\"fab fa-twitter\"></i>"
+				},
+				{
+					"pinterest" : "https://www.pinterest.com/designbold/",
+					"target" : "_blank",
+					"rel" : "nofollow",
+					"icon" : "<i class=\"fab fa-pinterest\"></i>"
+				},
+				{
+					"instagram" : "https://www.instagram.com/designbold/",
+					"target" : "_blank",
+					"rel" : "nofollow",
+					"icon" : "<i class=\"fab fa-instagram\"></i>"
+				}
+			],
+			"intro" : "DesignBold Academy provides critical knowledge on graphic design and printing, as well as essential complementary know-hows on marketing and technology that all need to prepare for Industry 4.0.</br>Contact us:",
+			"email" : "academy@designbold.com"
+		},
+		"footer_right" : [
+			{
+				"title" : "COMPANY",
+				"menu" : [
+					{"name" : "About Us", "link" : "https://www.designbold.com/about", "target" : "_blank"},
+					{"name" : "Our Team", "link" : "https://www.designbold.com/team", "target" : "_blank"},
+					{"name" : "Features", "link" : "https://www.designbold.com/features", "target" : "_blank"},
+					{"name" : "Pricing", "link" : "https://www.designbold.com/pricing", "target" : "_blank"},
+					{"name" : "Terms of Use", "link" : "https://www.designbold.com/term", "target" : "_blank"},
+					{"name" : "Privacy Policy", "link" : "https://www.designbold.com/policy", "target" : "_blank"}
+				]
+			},
+			{
+				"title" : "PRODUCTS",
+				"menu" : [
+					{"name" : "DesignIt Button", "link" : "https://developers.designbold.com/document/designit/", "target" : "_blank"},
+					{"name" : "Brand Kits", "link" : "https://www.designbold.com/brand-kit", "target" : "_blank"},
+					{"name" : "Templates", "link" : "https://www.designbold.com/templates", "target" : "_blank"},
+					{"name" : "Resources", "link" : "https://www.designbold.com/resources", "target" : "_blank"},
+					{"name" : "Contributor", "link" : "https://www.designbold.com/contributor", "target" : "_blank"}
+				]
+			},
+			{
+				"title" : "COMMUNITY & SUPPORT",
+				"menu" : [
+					{"name" : "Academy", "link" : "https://www.designbold.com/blog/", "target" : "_blank"},
+					{"name" : "FAQs & Support", "link" : "https://www.designbold.com/support", "target" : "_blank"},
+					{"name" : "Contact Us", "link" : "https://www.designbold.com/contact", "target" : "_blank"}
+				]
+			}
+		],
+		"allright" : "© 2018 - DesignBold Academy - Graphic Design and Printing Knowledge. All Rights Reserved."
+	}
+}

@@ -1,0 +1,108 @@
+//
+// Variables
+// --------------------------------------------------
+//== Colors
+//== Gray Levels
+$white: #fff !default;
+$gray-10: #FAFBFC !default;
+$gray-20: #F4F5F7 !default;
+$gray-30: #EBECF0 !default;
+$gray-40: #DFE1E6 !default;
+$gray-50: #C1C7D0 !default;
+$gray-60: #B3BAC5 !default;
+$gray-70: #A5ADBA !default;
+$gray-80: #97A0AF !default;
+$gray-90: #8993A4 !default;
+$gray-100: #7A869A !default;
+$gray-200: #6B778C !default;
+$gray-300: #5E6C84 !default;
+$gray-400: #505F79 !default;
+$gray-500: #42526E !default;
+$gray-600: #344563 !default;
+$gray-700: #253858 !default;
+$gray-800: #172B4D !default;
+$gray-900: #091E42 !default;
+$black: #000 !default;
+
+//==Base color
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+
+// Other Brand colors
+// -------------------------
+$brand-facebook: #3b5998;
+$brand-twitter: #3a92c8;
+$brand-google: #dd4b39;
+$brand-dribbble: #c32361;
+$brand-youtube: #b00;
+$brand-pinterest: #cb2027;
+$brand-instagram: #fb3958;
+$brand-rss: #f26522;
+
+
+$active-color:#0099fe;
+
+$text-color-heading:$gray-800;
+$text-color: $gray-600;
+$text-color-meta: $gray-100;
+$border-color: $gray-50;
+$border-radius:2px;
+
+
+$pro-color:#dd4b39;
+
+$beta-color:#dd4b39;
+
+
+
+
+$fs10:0.625rem;
+$fs12:0.75rem;
+$fs14:0.875rem;
+$fs16:1rem;
+$fs18:1.125rem;
+$fs20:1.25rem;
+$fs22:1.375rem;
+$fs24:1.5rem;
+$fs26:1.1625rem;
+$fs28:1.75rem;
+$fs30:1.1875rem;
+$fs32:2rem;
+$fs34:2.125rem;
+$fs36:2.25rem;
+
+
+$font-size-base: $fs14;
+$font-size-heading: $fs18;
+
+//== Typography
+$font-size-large:60px;
+$font-size-h1: 3.5rem;
+$font-size-h2: 3rem;
+$font-size-h3: 2.5rem;
+$font-size-h4: 2rem;
+$font-size-h5: 1.8rem;
+$font-size-h6: 1.5rem;
+
+
+
+// NNTH: Font Weight Variants
+// --------------------------------
+$font-weight-light: 300;
+$font-weight-base: 400;
+$font-weight-bold: 700;
+
+
+// Typography
+// -------------------------
+$font-family:'Open Sans',
+sans-serif;

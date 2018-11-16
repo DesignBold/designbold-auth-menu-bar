@@ -1,0 +1,25 @@
+.db-footer .footer-left .social a{
+	background: none !important;
+}
+.db-footer .footer-col ul li {
+    padding: 0;
+    line-height: 20px;
+}
+body.designitmenu{
+
+}
+body.logged-in.admin-bar{
+    margin-top: 50px !important;
+}
+body.logged-in.admin-bar header.db-header {
+    top: 32px;
+}
+.db-header .main-menu ul li{
+	padding: 0 !important;
+}
+.db-header .open .dropdown-menu:hover{
+	color: #333 !important;
+}
+.db-header .user-head h3{
+	line-height: 1.2;
+}

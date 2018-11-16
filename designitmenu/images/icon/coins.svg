@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Coins</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-688.000000, -355.000000)">
+            <g id="Coins" transform="translate(688.000000, 355.000000)">
+                <circle id="Oval-4" fill="#F69931" cx="12" cy="12" r="12"></circle>
+                <circle id="Oval-4" fill="#DC4F1B" cx="12" cy="12" r="10"></circle>
+                <text id="DB" font-family="OpenSans-Bold, Open Sans" font-size="8" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="6.66666667" y="15">DB</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
