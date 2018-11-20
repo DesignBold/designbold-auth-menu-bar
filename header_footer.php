@@ -231,7 +231,7 @@
     DBMN.app = {
         'app_key' : '<?= $options_app_key ?>',
         'app_secret' : '<?= $options_app_secret ?>',
-        'redirect_url' : "<?= plugins_url('/designitmenu/designbold.php') ?>",
+        'redirect_url' : "<?= plugins_url('/designbold-auth-menu-bar-master/designbold.php') ?>",
         'internal_debug' : false,
         'scope' : '*.*',
     }

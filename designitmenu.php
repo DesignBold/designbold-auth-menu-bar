@@ -62,7 +62,7 @@ if($dbmenu_option_app_key != '' && $dbmenu_option_app_secret != ''){
 add_action('admin_menu', 'dbmenu_add_admin_menu');
 function dbmenu_add_admin_menu() {
 	//create new top-level menu
-	$icon = plugins_url('designitmenu/images/16.png');
+	$icon = plugins_url('designbold-auth-menu-bar-master/images/16.png');
 	add_menu_page( 'Designit menu option', 'Designit menu', 'manage_options', 'designit-menu', 'dbmenu_plugin_setting_page', $icon);
 }
 

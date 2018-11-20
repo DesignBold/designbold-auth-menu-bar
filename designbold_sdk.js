@@ -34,7 +34,7 @@ DBMN.designbold_login = function(){
     var h = '400';
     var title = 'Designbold login';
     var baseUrl = DBMN.baseUrl();
-    var url = baseUrl + 'wp-content/plugins/designitmenu/designbold.php?action=connect';
+    var url = baseUrl + 'wp-content/plugins/designbold-auth-menu-bar-master/designbold.php?action=connect';
     DBMN.popupwindow(url, title, w, h);
 }
 
