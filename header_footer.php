@@ -1,5 +1,7 @@
 <!-- Designit header -->
 <?php 
+    $base_url = get_option('siteurl') != '' ? get_option('siteurl') : "";
+
     $dir = plugin_dir_url(__FILE__); 
     $JSON_config = file_get_contents($dir."config.json");
 
@@ -227,6 +229,10 @@
 
 <script type="text/javascript">
     var DBMN = DBMN || {};
+
+    DBMN.baseUrl = function(){
+        return '<?= $base_url ?>';
+    }
 
     DBMN.app = {
         'app_key' : '<?= $options_app_key ?>',

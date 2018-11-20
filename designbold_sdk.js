@@ -25,10 +25,6 @@ function getHostName(url) {
     }
 }
 
-DBMN.baseUrl = function(){
-    return window.location.origin + '/';
-}
-
 DBMN.designbold_login = function(){
     var w = '600';
     var h = '400';
