@@ -25,34 +25,38 @@ along with {Designit Menu}. If not, see {Plugin URI}.
 */
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+$dbmenu_option_app_key = esc_attr( get_option('dbmenu_option_app_key') );
+$dbmenu_option_app_secret = esc_attr( get_option('dbmenu_option_app_secret') );
 
-// Add html
-add_action('wp_footer', 'dbmenu_add_header_and_footer');
-function dbmenu_add_header_and_footer (){
-	include('header_footer.php');
-}
+if($dbmenu_option_app_key != '' && $dbmenu_option_app_secret != ''){
+	// Add html
+	add_action('wp_footer', 'dbmenu_add_header_and_footer');
+	function dbmenu_add_header_and_footer (){
+		include('header_footer.php');
+	}
 
-// Add class for the body element
-add_filter('body_class', 'multisite_body_classes');
-function multisite_body_classes($classes) {
-	$classes[] = 'designitmenu';
-	return $classes;
-}
+	// Add class for the body element
+	add_filter('body_class', 'multisite_body_classes');
+	function multisite_body_classes($classes) {
+		$classes[] = 'designitmenu';
+		return $classes;
+	}
 
-// Add list css, js for plugin
-add_action( 'wp_enqueue_scripts', 'dbmenu_namespace_scripts_styles' );
-function dbmenu_namespace_scripts_styles() {
-	$dir = plugin_dir_url(__FILE__);
-	wp_enqueue_style( 'dbmenu_google_font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
-	wp_enqueue_style( 'dbmenu_font-awesome.min.css', $dir . 'css/font-awesome.min.css');
-	wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css', false, '1.1', 'all' );
-	wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css', false, '1.1', 'all' );
-	wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.1', 'all' );
+	// Add list css, js for plugin
+	add_action( 'wp_enqueue_scripts', 'dbmenu_namespace_scripts_styles' );
+	function dbmenu_namespace_scripts_styles() {
+		$dir = plugin_dir_url(__FILE__);
+		wp_enqueue_style( 'dbmenu_google_font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+		wp_enqueue_style( 'dbmenu_font-awesome.min.css', $dir . 'css/font-awesome.min.css');
+		wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css', false, '1.1', 'all' );
+		wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css', false, '1.1', 'all' );
+		wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.1', 'all' );
 
-	wp_enqueue_script( 'dbmenu_popper.js', $dir . 'js/popper.js', array ( 'jquery' ), 1.1, true);
-	wp_enqueue_script( 'dbmenu_bootstrap.min.js', $dir . 'js/bootstrap.min.js', array ( 'jquery' ), 1.1, true);
-	wp_enqueue_script( 'dbmenu_main.js', $dir . 'js/main.js', array ( 'jquery' ), 1.1, true);
-	wp_enqueue_script( 'dbmenu_designbold_sdk.js', $dir . '/designbold_sdk.js', array ( 'jquery' ), 1.1, true);
+		wp_enqueue_script( 'dbmenu_popper.js', $dir . 'js/popper.js', array ( 'jquery' ), 1.1, true);
+		wp_enqueue_script( 'dbmenu_bootstrap.min.js', $dir . 'js/bootstrap.min.js', array ( 'jquery' ), 1.1, true);
+		wp_enqueue_script( 'dbmenu_main.js', $dir . 'js/main.js', array ( 'jquery' ), 1.1, true);
+		wp_enqueue_script( 'dbmenu_designbold_sdk.js', $dir . '/designbold_sdk.js', array ( 'jquery' ), 1.1, true);
+	}
 }
 
 // Add item to admin menu
@@ -68,7 +72,7 @@ function dbmenu_plugin_setting_page() {
 	?>
 	<div class="wrap">
 		<h1>DesignIt Menu Option</h1>
-
+		<p>App key and app secret must be required to plugin work. If one of 2 fields be empty then plugin will not work.</p>
 		<?php settings_errors(); ?>
 		<!-- Phải chạy vào options.php đây là mặc định của wordpress :( -->
 		<form method="post" action="">
