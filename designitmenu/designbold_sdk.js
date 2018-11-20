@@ -3,17 +3,9 @@
 + build logout
 + 
 */
-var DBMN = {};
+var DBMN = DBMN || {};
 DBMN.tokenExpire = {};
 DBMN.userInfoAPI = {};
-
-DBMN.app = {
-    'app_key' : 'OqzD61pE2BeRDqZo95JO7NV6kXGmxlVyl1wzj0PdAWraQ43gKn8vbYREAJVY@designbold-apps',
-    'app_secret' : 'Omzgb4q4YPxEoyvrQ07G1L5ON6anMDo8w3XJ29WmZzpebjBRKADkglB7Lw5K@designbold-apps',
-    'redirect_url' : 'http://10.0.0.61:8080/test/wordpress/wp-content/plugins/designitmenu/designbold.php',
-    'internal_debug' : false,
-    'scope' : '*.*',
-}
 
 DBMN.box_login_signup = document.getElementById('designbold_login_nav');
 DBMN.btn_login = document.getElementById('designbold_login');
@@ -34,7 +26,7 @@ function getHostName(url) {
 }
 
 DBMN.baseUrl = function(){
-    return window.location.origin + '/test/wordpress/';
+    return window.location.origin + '/';
 }
 
 DBMN.designbold_login = function(){
@@ -79,7 +71,6 @@ DBMN.checkLogin = function(){
         var expires = DBMN.checkAccessTokenExpires(access_token);
 
         expires.then(function(result_expires){
-            // Result of then 1
             // console.log(result_expires);
         })
         .then(function(result2){
@@ -228,3 +219,4 @@ DBMN.logout = function(){
 }
 
 DBMN.checkLogin();
+

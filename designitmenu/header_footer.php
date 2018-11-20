@@ -2,6 +2,13 @@
 <?php 
     $dir = plugin_dir_url(__FILE__); 
     $JSON_config = file_get_contents($dir."config.json");
+
+
+    $options_app_key = 
+    get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "";
+
+    $options_app_secret = 
+    get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : "";
 ?>
 <header class="db-header">
     <div class="container">
@@ -215,4 +222,16 @@
     $('#designbold_nav_menu_res').html(designbold_nav_menu_res_template({
         menu : designbold_json_config.header,
     }));
+</script>
+
+<script type="text/javascript">
+    var DBMN = DBMN || {};
+
+    DBMN.app = {
+        'app_key' : '<?= $options_app_key ?>',
+        'app_secret' : '<?= $options_app_secret ?>',
+        'redirect_url' : "<?= plugins_url('/designitmenu/designbold.php') ?>",
+        'internal_debug' : false,
+        'scope' : '*.*',
+    }
 </script>
