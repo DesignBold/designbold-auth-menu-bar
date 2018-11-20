@@ -231,7 +231,7 @@
     var DBMN = DBMN || {};
 
     DBMN.baseUrl = function(){
-        return '<?= $base_url ?>';
+        return '<?= $base_url ?>'+'/';
     }
 
     DBMN.app = {
