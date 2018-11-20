@@ -20,6 +20,19 @@ body.logged-in.admin-bar header.db-header {
 .db-header .open .dropdown-menu:hover{
 	color: #333 !important;
 }
+.db-header .user-head h3 .upgrade{
+	font-size: 11px;
+}
+.db-header .db-coins p{
+	font-size: 13px;
+}
+.db-header .user-head p{
+	font-size: 12px;
+}
 .db-header .user-head h3{
 	line-height: 1.2;
+	font-size: 16px;
+}
+.db-header .open>.dropdown-menu{
+	font-size: 14px !important;
 }
