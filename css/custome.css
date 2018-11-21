@@ -2,20 +2,21 @@
 	background: none !important;
 }
 .db-footer .footer-col ul li {
-    padding: 0;
-    line-height: 20px;
+	padding: 0;
+	line-height: 20px;
 }
 body.designitmenu{
 
 }
 body.logged-in.admin-bar{
-    margin-top: 50px !important;
+	margin-top: 50px !important;
 }
 body.logged-in.admin-bar header.db-header {
-    top: 32px;
+	top: 32px;
 }
 .db-header{
 	font-size: 14px;
+	z-index: 99999;
 }
 .db-header .main-menu ul li{
 	padding: 0 !important;
@@ -23,19 +24,20 @@ body.logged-in.admin-bar header.db-header {
 .db-header .open .dropdown-menu:hover{
 	color: #333 !important;
 }
-.db-header .user-head h3 .upgrade{
+.db-header .user-head h3 .upgrade, .db-footer .allright p{
 	font-size: 11px;
-}
-.db-header .db-coins p{
-	font-size: 13px;
 }
 .db-header .user-head p{
 	font-size: 12px;
 }
+.db-header .db-coins p, .db-footer .footer-col ul li a,
+.db-header .user-balance .db-coins p{
+	font-size: 13px;
+}
+.db-header .open>.dropdown-menu, .db-footer .footer-col h4{
+	font-size: 14px !important;
+}
 .db-header .user-head h3{
 	line-height: 1.2;
 	font-size: 16px;
-}
-.db-header .open>.dropdown-menu{
-	font-size: 14px !important;
 }

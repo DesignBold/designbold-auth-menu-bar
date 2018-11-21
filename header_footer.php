@@ -12,7 +12,6 @@
     $options_app_secret = 
     get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : "";
 ?>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <header class="db-header">
     <div class="container">
         <div class="pull-left" id="designbold_nav_main_menu"></div>
@@ -71,7 +70,11 @@
             <div class="uh-avatar">
                 <img alt="" src="<%= user.avatar %>">
             </div>
-            <h3><%= user.fullname %><span class="upgrade">Upgrade</span></h3>
+            <h3><%= user.fullname %>
+                <% if ([3,8].indexOf(user.group_id) != -1){ %>
+                <span class="upgrade">Upgrade</span>
+                <% } %>
+            </h3>
             <p><%= user.email %></p>
         </div>
         <div class="user-balance">
