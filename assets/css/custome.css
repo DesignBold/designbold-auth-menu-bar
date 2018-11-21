@@ -34,7 +34,7 @@ body.logged-in.admin-bar header.db-header {
 .db-header .user-balance .db-coins p{
 	font-size: 13px;
 }
-.db-header .open>.dropdown-menu, .db-footer .footer-col h4{
+.db-header .open>.dropdown-menu, .db-footer .footer-col h4, .db-header .user-info-dropdown{
 	font-size: 14px !important;
 }
 .db-header .user-head h3{
