@@ -11,13 +11,6 @@
                 }
             });
         }
-
-
-
-
-
         db.menuResponsive();
-
-
     });
 })(jQuery);

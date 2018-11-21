@@ -1,2 +1,0 @@
-<?php
-# Well come designbold.

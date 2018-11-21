@@ -12,17 +12,29 @@ DBMN.btn_login = document.getElementById('designbold_login');
 DBMN.btn_signup = document.getElementById('designbold_signup');
 DBMN.box_user_info = document.getElementById('designbold_user_info');
 
-DBMN.btn_res_login = document.getElementById('designbold_res_login');
-DBMN.btn_res_signup = document.getElementById('designbold_res_signup');
+// DBMN.btn_res_login = document.getElementById('designbold_res_login');
+// DBMN.btn_res_signup = document.getElementById('designbold_res_signup');
 
 function getHostName(url) {
     var match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
     if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
-    return match[2];
+        return match[2];
     }
     else {
         return null;
     }
+}
+
+DBMN.baseUrl = function(){
+    return dbtopbarconfig.baseUrl+'/';
+}
+
+DBMN.app = {
+    'app_key' : dbtopbarconfig.options.app_key,
+    'app_secret' : dbtopbarconfig.options.app_secret,
+    'redirect_url' : dbtopbarconfig.pluginUrl,
+    'internal_debug' : false,
+    'scope' : '*.*'
 }
 
 DBMN.designbold_login = function(){
@@ -75,8 +87,8 @@ DBMN.checkLogin = function(){
 
             if(new_access_token){
                 $('#designbold_login_nav').removeClass("d-sm-block");
-                DBMN.btn_res_login.style.display = "none";
-                DBMN.btn_res_signup.style.display = "none";
+                // DBMN.btn_res_login.style.display = "none";
+                // DBMN.btn_res_signup.style.display = "none";
                 DBMN.getUserInfo(DBMN.getCookie('access_token'));
             }
         })

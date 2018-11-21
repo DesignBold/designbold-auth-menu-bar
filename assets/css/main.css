@@ -1,0 +1,522 @@
+/*------------------------------------------------------------------
+    [Main Style Stylesheet]
+    Project:       DesignBold Template
+    Version:        2.0.1
+    Author:         Danh Cong
+    Skype:          congnd91
+    Author URI:     https://danhcong.com    
+-------------------------------------------------------------------
+-------------------------------------------------------------------*/
+/*-------------------------------HEADER------------------------------------*/
+.container {
+  position: relative; }
+
+.db-header {
+  background-color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: #344563;
+  min-height: 50px; }
+  .db-header a:hover {
+    text-decoration: none; }
+
+.db-header {
+  background-color: #fff;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+  transition: all ease 0.4s; }
+  .db-header .float-right {
+    padding: 10px 0px 0px 0px; }
+  .db-header .pull-left {
+    position: relative;
+    min-width: 120px;
+    min-height: 30px; }
+  .db-header a.logo {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    margin: 2px 0px 0px 0px; }
+    .db-header a.logo img {
+      height: 30px; }
+  .db-header a.logo-white {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    margin: 2px 0px 0px 0px; }
+    .db-header a.logo-white img {
+      height: 30px; }
+  .db-header .main-menu {
+    float: left;
+    margin: 0px 0px 0px 140px; }
+    .db-header .main-menu > ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none; }
+      .db-header .main-menu > ul > li {
+        float: left;
+        margin: 0px 0px 0px 10px;
+        position: relative; }
+        .db-header .main-menu > ul > li:hover ul {
+          opacity: 1;
+          visibility: visible; }
+        .db-header .main-menu > ul > li > a {
+          line-height: 50px;
+          color: #344563;
+          transition: all ease 0.4s;
+          font-weight: 600;
+          padding: 0px 15px; }
+          .db-header .main-menu > ul > li > a:hover {
+            color: #0099fe; }
+          .db-header .main-menu > ul > li > a .fa-plus {
+            font-size: 10px;
+            color: #0099fe;
+            position: relative;
+            top: -5px;
+            transform: all ease 0.4s; }
+        .db-header .main-menu > ul > li ul {
+          background-color: #fff;
+          position: absolute;
+          top: 100%;
+          left: 0px;
+          width: 200px;
+          list-style: none;
+          padding: 0px;
+          margin: 0px;
+          box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+          transition: all ease 0.4s;
+          visibility: hidden;
+          opacity: 0; }
+          .db-header .main-menu > ul > li ul li {
+            display: block; }
+            .db-header .main-menu > ul > li ul li a {
+              display: block;
+              padding: 7px 15px;
+              color: #344563;
+              transition: all ease 0.4s;
+              font-weight: 600; }
+              .db-header .main-menu > ul > li ul li a:hover {
+                color: #0099fe; }
+  .db-header .user-link {
+    float: left; }
+    .db-header .user-link a {
+      float: left;
+      line-height: 30px;
+      padding: 0px 20px;
+      border-radius: 20px;
+      margin: 0px 0px 0px 10px;
+      color: #344563;
+      font-weight: 600;
+      transition: all ease 0.4s; }
+      .db-header .user-link a span {
+        transform: all ease 0.4s; }
+      .db-header .user-link a.login {
+        background-color: #0099fe;
+        color: #fff; }
+        .db-header .user-link a.login:hover {
+          background-color: #32adff; }
+      .db-header .user-link a.signup {
+        padding: 0px 10px; }
+  .db-header .search-icon {
+    float: left;
+    line-height: 30px;
+    width: 30px;
+    margin: 0px 0px 0px 0px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transform: all ease 0.4s; }
+    .db-header .search-icon i {
+      transform: all ease 0.4s; }
+    .db-header .search-icon:hover {
+      color: #0099fe; }
+  .db-header .menu-icon {
+    float: left;
+    line-height: 30px;
+    width: 30px;
+    margin: 0px 0px 0px 0px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    transform: all ease 0.4s; }
+    .db-header .menu-icon:hover {
+      color: #0099fe; }
+  .db-header .user-info {
+    float: left;
+    margin: 0px 10px 0px 10px;
+    position: relative; }
+    .db-header .user-info .user-avatar {
+      width: 30px;
+      cursor: pointer;
+      height: 30px; }
+      .db-header .user-info .user-avatar img {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: block; }
+    .db-header .user-info .user-type {
+      position: absolute;
+      top: 0px;
+      right: -20px;
+      border-radius: 2px;
+      line-height: 13px;
+      height: 13px;
+      color: #fff;
+      z-index: 999;
+      font-size: 8px;
+      padding: 0px 5px;
+      background-color: #dd4b39; }
+  .db-header .user-language {
+    float: left;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 20px; }
+    .db-header .user-language a {
+      margin: 0px 0px 0px 10px; }
+      .db-header .user-language a img {
+        height: 20px;
+        cursor: pointer; }
+  .db-header .user-info-dropdown {
+    font-size: 0.875rem;
+    left: unset !important;
+    margin: 25px 0px 0px 0px;
+    top: 100% !important;
+    right: -15px !important;
+    transform: none !important;
+    min-width: 300px;
+    margin-left: 0px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
+    border: none;
+    border-radius: 3px; }
+    .db-header .user-info-dropdown:before {
+      bottom: 100%;
+      right: 19px;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(194, 225, 245, 0);
+      border-bottom-color: #ddd;
+      border-width: 11px;
+      margin-left: -11px; }
+    .db-header .user-info-dropdown:after {
+      bottom: 100%;
+      right: 19px;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(136, 183, 213, 0);
+      border-bottom-color: #fff;
+      border-width: 10px;
+      margin-left: -10px; }
+    .db-header .user-info-dropdown:before {
+      left: unset !important;
+      right: 19px; }
+    .db-header .user-info-dropdown:after {
+      left: unset !important;
+      right: 19px; }
+    .db-header .user-info-dropdown li.current {
+      background-color: #0099fe; }
+      .db-header .user-info-dropdown li.current a {
+        color: #fff; }
+      .db-header .user-info-dropdown li.current:hover {
+        opacity: 0.9;
+        background-color: #0099fe; }
+        .db-header .user-info-dropdown li.current:hover a {
+          background-color: #0099fe;
+          color: #fff; }
+  .db-header .user-head {
+    padding: 15px 15px 10px 70px; }
+    .db-header .user-head .uh-avatar {
+      width: 40px;
+      margin: 0px 0px 0px -55px;
+      height: 40px;
+      float: left;
+      border-radius: 50%; }
+      .db-header .user-head .uh-avatar img {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%; }
+    .db-header .user-head h3 {
+      font-size: 1rem;
+      margin: -5px 0px 0px 0px;
+      white-space: nowrap;
+      max-width: 600px;
+      padding: 5px 0px 0px 0px;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      .db-header .user-head h3 .upgrade {
+        display: inline-block;
+        color: #dd4b39;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.625rem;
+        border: 1px solid #dd4b39;
+        position: relative;
+        margin: 0px 0px 0px 7px;
+        top: -5px;
+        transition: all ease 0.3s; }
+        .db-header .user-head h3 .upgrade:hover {
+          cursor: pointer;
+          background-color: #dd4b39;
+          color: #fff; }
+    .db-header .user-head p {
+      font-size: 0.75rem;
+      margin: 0px;
+      color: #7A869A; }
+  .db-header .line-under-stock {
+    height: 1px;
+    margin: 10px 0px 10px 0px;
+    background-color: #C1C7D0; }
+  .db-header .user-balance {
+    padding: 0px 15px;
+    white-space: nowrap; }
+    .db-header .user-balance .db-coins p {
+      font-size: 0.8125rem; }
+    .db-header .user-balance .user-stock {
+      display: block;
+      margin: 10px 0px 0px 0px; }
+      .db-header .user-balance .user-stock p {
+        margin: 0px 0px 0px 0px;
+        font-size: 0.8125rem; }
+    .db-header .user-balance .db-stock-flex {
+      display: flex; }
+      .db-header .user-balance .db-stock-flex label {
+        line-height: 15px;
+        margin: 0px 0px 0px 5px;
+        font-size: 0.8125rem; }
+      .db-header .user-balance .db-stock-flex .db-stock-progress {
+        width: 100%;
+        padding: 6px 0px 0px 0px; }
+      .db-header .user-balance .db-stock-flex .stock-progress {
+        display: block;
+        width: 100%;
+        position: relative;
+        background-color: #C1C7D0;
+        height: 7px;
+        border-radius: 5px; }
+        .db-header .user-balance .db-stock-flex .stock-progress .stock-progress-value {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          bottom: 0px;
+          background-color: #0099fe;
+          border-radius: 5px; }
+  .db-header .user-list-menu {
+    padding: 0px 0px;
+    list-style: none;
+    margin: 0px; }
+    .db-header .user-list-menu li {
+      padding: 0px;
+      margin: 0px; }
+      .db-header .user-list-menu li a {
+        display: block;
+        padding: 8px 15px;
+        color: #344563; }
+        .db-header .user-list-menu li a i {
+          width: 25px;
+          display: inline-block; }
+      .db-header .user-list-menu li:hover a {
+        background-color: #f5f5f5; }
+      .db-header .user-list-menu li.active a {
+        background-color: #f5f5f5;
+        font-weight: 600; }
+  .db-header .menu-res {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    right: 0px;
+    border-top: 1px solid #C1C7D0;
+    background-color: #fff;
+    z-index: 100;
+    display: none;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1); }
+    .db-header .menu-res ul {
+      margin: 0px;
+      padding: 0px 0px;
+      list-style: none; }
+      .db-header .menu-res ul li {
+        display: block;
+        margin: 0px;
+        padding: 0px; }
+        .db-header .menu-res ul li a {
+          line-height: 35px;
+          color: #344563;
+          transition: all ease 0.4s;
+          font-weight: 600;
+          padding: 0px 15px;
+          display: block; }
+          .db-header .menu-res ul li a:hover {
+            color: #0099fe;
+            background-color: #C1C7D0; }
+  @media screen and (min-width: 992px) {
+    .db-header .menu-res {
+      display: none !important; } }
+
+.db-coins {
+  line-height: 30px;
+  display: inline-block;
+  margin: 0px 10px 0px 0px; }
+  .db-coins .db-coins-icon {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0px 2px 0px 0px;
+    background-image: url(../images/icon/coins.svg);
+    background-size: 22px auto; }
+  .db-coins p {
+    line-height: 30px;
+    display: inline-block;
+    margin: 0px; }
+  .db-coins.db-bonus-coins .db-coins-icon {
+    float: left;
+    background-image: url(../images/icon/bonus-coins.svg); }
+  .db-coins.text-gray p {
+    line-height: 30px;
+    display: inline-block;
+    margin: 0px; }
+    .db-coins.text-gray p strong {
+      font-weight: 700; }
+
+.db-stocks {
+  line-height: 30px;
+  display: inline-block;
+  margin: 0px 10px 0px 0px; }
+  .db-stocks .db-stocks-icon {
+    float: left;
+    width: 20px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0px 0px 0px 0px; }
+    .db-stocks .db-stocks-icon i {
+      display: block;
+      line-height: 30px;
+      font-size: 15px;
+      color: #0099fe; }
+  .db-stocks p {
+    line-height: 30px;
+    display: inline-block;
+    margin: 0px;
+    color: #fff; }
+    .db-stocks p strong {
+      font-weight: 700;
+      color: #fff; }
+  .db-stocks.text-gray p {
+    line-height: 30px;
+    display: inline-block;
+    margin: 0px; }
+    .db-stocks.text-gray p strong {
+      font-weight: 700; }
+
+/*-------------------------------FOOTER------------------------------------*/
+.db-footer {
+  padding: 50px 0px 0px 0px;
+  background-color: #344563;
+  min-height: 200px; }
+  .db-footer .footer-left {
+    max-width: 300px;
+    float: left; }
+    @media screen and (max-width: 767px) {
+      .db-footer .footer-left {
+        float: none;
+        margin: 0px 0px 30px 0px; } }
+    .db-footer .footer-left a.logo img {
+      width: 150px; }
+    .db-footer .footer-left .social {
+      padding: 5px 0px 5px 5px; }
+      .db-footer .footer-left .social a {
+        display: inline-block;
+        cursor: pointer;
+        color: #fff;
+        transition: all ease 0.4;
+        margin: 0px 15px 0px 0px;
+        font-size: 18px;
+        opacity: 0.9;
+        transition: all ease 0.4s; }
+        .db-footer .footer-left .social a:hover {
+          opacity: 1; }
+        .db-footer .footer-left .social a.facebook {
+          color: #3b5998; }
+          .db-footer .footer-left .social a.facebook:hover {
+            color: #3b5998; }
+        .db-footer .footer-left .social a.twitter {
+          color: #3a92c8; }
+          .db-footer .footer-left .social a.twitter:hover {
+            color: #3a92c8; }
+        .db-footer .footer-left .social a.pinterest {
+          color: #cb2027; }
+          .db-footer .footer-left .social a.pinterest:hover {
+            color: #cb2027; }
+        .db-footer .footer-left .social a.instagram {
+          color: #fb3958; }
+          .db-footer .footer-left .social a.instagram:hover {
+            color: #fb3958; }
+  .db-footer .footer-right {
+    float: right; }
+    @media screen and (max-width: 767px) {
+      .db-footer .footer-right {
+        float: none; } }
+  .db-footer .footer-col {
+    float: left;
+    margin: 0px 0px 0px 50px; }
+    @media screen and (max-width: 767px) {
+      .db-footer .footer-col {
+        float: left;
+        width: 33.33%;
+        margin: 0px; } }
+  @media screen and (max-width: 767px) and (max-width: 575px) {
+    .db-footer .footer-col {
+      display: block;
+      width: 100%;
+      float: none;
+      margin: 0px 0px 30px 0px; } }
+    .db-footer .footer-col h4 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 0px 0px 20px 0px;
+      color: #fff; }
+    .db-footer .footer-col ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none; }
+      .db-footer .footer-col ul li {
+        margin: 0px 0px 7px 0px; }
+        .db-footer .footer-col ul li a {
+          display: block;
+          font-size: 0.8125rem;
+          color: #fff;
+          opacity: 0.7; }
+          .db-footer .footer-col ul li a:hover {
+            text-decoration: underline; }
+  .db-footer .company p {
+    color: #fff;
+    opacity: 0.8;
+    font-size: 13px;
+    margin: 0px 0px 10px 0px; }
+  .db-footer .allright {
+    text-align: center;
+    padding: 30px 0px 30px 0px;
+    margin: 50px 0px 0px 0px;
+    border-top: 1px solid #465c84; }
+    .db-footer .allright p {
+      text-transform: uppercase;
+      font-size: 0.6875rem;
+      color: #fff;
+      opacity: 0.6;
+      letter-spacing: 2px;
+      margin: 0px; }
+
+/*# sourceMappingURL=main.css.map */

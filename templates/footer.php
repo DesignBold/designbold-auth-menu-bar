@@ -1,0 +1,68 @@
+<!-- Designit footer -->
+<footer class="db-footer">
+    <div class="container">
+        <div class="footer-left">
+            <div class="company">
+
+                <a href="https://www.designbold.com/" class="logo">
+                    <img alt="" src="<?= $dir ?>assets/images/logo_white.svg">
+                </a>
+                <div class="social">
+                    <a class="facebook" href="https://www.facebook.com/designbolddotcom/" target="_blank" rel="nofollow">
+                        <i class="fab fa-facebook-square"></i>
+                    </a>
+                    <a class="twitter" href="https://twitter.com/DesignBold_" target="_blank" rel="nofollow">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="pinterest" href="https://www.pinterest.com/designbold/" target="_blank" rel="nofollow">
+                        <i class="fab fa-pinterest"></i>
+                    </a>
+                    <a class="instagram" href="https://www.instagram.com/designbold/" target="_blank" rel="nofollow">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <p>DesignBold Academy provides critical knowledge on graphic design and printing, as well as essential complementary know-hows on marketing and technology that all need to prepare for Industry 4.0.
+                Contact us:</p>
+                <p>Email: academy@designbold.com</p>
+            </div>
+
+
+        </div>
+        <div class="footer-right">
+            <div class="footer-col">
+                <h4><span class="db-value">COMPANY</span></h4>
+                <ul class="sub_menu_footer">
+                    <li><a href="https://www.designbold.com/about"> <span class="db-value">About Us</span></a></li>
+                    <li><a href="https://www.designbold.com/team"><span class="db-value">Our Team</span></a></li>
+                    <li><a href="https://www.designbold.com/features"><span class="db-value">Features</span></a></li>
+                    <li><a href="https://www.designbold.com/pricing"><span class="db-value">Pricing</span></a></li>
+                    <li><a href="https://www.designbold.com/term"><span class="db-value">Terms of Use</span></a></li>
+                    <li><a href="https://www.designbold.com/policy"> <span class="db-value">Privacy Policy</span></a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4><span class="db-value">PRODUCTS</span></h4>
+                <ul class="sub_menu_footer">
+                    <li><a href="https://developers.designbold.com/document/designit/"><span class="db-value">DesignIt Button</span></a></li>
+                    <li><a href="https://www.designbold.com/brand-kit"><span class="db-value">Brand Kits</span></a></li>
+                    <li><a href="https://www.designbold.com/templates"><span class="db-value">Templates</span></a></li>
+                    <li><a href="https://www.designbold.com/resources"><span class="db-value">Resources</span></a></li>
+                    <li><a href="https://www.designbold.com/contributor"><span class="db-value">Contributor</span></a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4><span class="db-value">COMMUNITY &amp; SUPPORT</span></h4>
+                <ul class="sub_menu_footer">
+                    <li><a href="https://www.designbold.com/blog/" target="_blank"><span class="db-value">Academy</span></a></li>
+                    <li><a href="https://www.designbold.com/support"><span class="db-value">FAQs &amp; Support</span></a></li>
+                    <li><a href="https://www.designbold.com/contact"><span class="db-value">Contact Us</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="allright">
+            <p><span class="db-value">© 2018 - DesignBold Academy - Graphic Design and Printing Knowledge. All Rights Reserved.</span> </p>
+        </div>
+    </div>
+</footer>
+<!-- End Designit footer -->

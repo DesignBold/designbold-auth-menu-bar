@@ -28,7 +28,7 @@ class DesignboldSampleSdk {
 
         $this->app_key = $options_app_key;
         $this->app_secret = $options_app_secret;
-        $this->redirect_url = plugins_url('/designbold-auth-menu-bar-master/designbold.php');
+        $this->redirect_url = plugins_url('/designbold-auth-menu-bar/designbold.php');
         $this->scope = isset($params['scope']) ? $params['scope']  : "";
         $this->sdk_version = isset($params['sdk_version']) ? $params['sdk_version'] : "v3";
         $this->internal_debug = isset($params['internal_debug']) ? $params['internal_debug'] : false;
