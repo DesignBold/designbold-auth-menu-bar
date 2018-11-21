@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Designit Menu DEMO
+Plugin Name: Designit Menu
 Plugin URI: https://www.designbold.com/collection/create-new
 Description: Desingbold designit build plugin allow create a menu
 Version: 1.0.0
@@ -117,8 +117,13 @@ function dbmenu_plugin_setting_page() {
 						<select name="dbmenu_option_menu_name">
 							<?php 
 							$menus = get_terms('nav_menu');
+							$active = get_option('dbmenu_option_menu_name');
 							foreach($menus as $menu){
-								echo '<option value="'.$menu->slug.'">'. $menu->name . "</option>";
+								if($menu->slug == $active){
+									echo '<option selected value="'.$menu->slug.'">'. $menu->name . "</option>";
+								}else{
+									echo '<option value="'.$menu->slug.'">'. $menu->name . "</option>";
+								}
 							} 
 							?>
 						</select>

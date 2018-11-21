@@ -12,7 +12,6 @@
             <nav class="main-menu d-none d-lg-block">
                 <?php 
                     wp_nav_menu(array(
-                    'theme_location'  => 'designbold-menu',
                     'menu' => get_option('dbmenu_option_menu_name'),
                     'container'       => '',
                     'container_class' => '',
@@ -39,7 +38,7 @@
     <nav class="menu-res" id="designbold_nav_menu_res">
         <div class="menu-res-inner">
         <?php wp_nav_menu(array(
-            'theme_location'  => 'designbold-menu',
+            'menu' => get_option('dbmenu_option_menu_name'),
             'container'       => '',
             'container_class' => '',
             'echo'            => true,
