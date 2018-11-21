@@ -1,17 +1,21 @@
 <!-- Designit header -->
 <?php 
-    $base_url = get_option('siteurl') != '' ? get_option('siteurl') : "";
+$base_url = get_option('siteurl') != '' ? get_option('siteurl') : "";
 
-    $dir = plugin_dir_url(__FILE__); 
-    $JSON_config = file_get_contents($dir."config.json");
+$dir = plugin_dir_url(__FILE__); 
+$JSON_config = file_get_contents($dir."config.json");
 
 
-    $options_app_key = 
-    get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "";
+$options_app_key = 
+get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "";
 
-    $options_app_secret = 
-    get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : "";
+$options_app_secret = 
+get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : "";
 ?>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<!-- Vender -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-j8y0ITrvFafF4EkV1mPW0BKm6dp3c+J9Fky22Man50Ofxo2wNe5pT1oZejDH9/Dt" crossorigin="anonymous">
+
 <header class="db-header">
     <div class="container">
         <div class="pull-left" id="designbold_nav_main_menu"></div>

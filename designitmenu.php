@@ -46,7 +46,6 @@ if($dbmenu_option_app_key != '' && $dbmenu_option_app_secret != ''){
 	add_action( 'wp_enqueue_scripts', 'dbmenu_namespace_scripts_styles' );
 	function dbmenu_namespace_scripts_styles() {
 		$dir = plugin_dir_url(__FILE__);
-		wp_enqueue_style( 'dbmenu_google_font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
 		wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css', false, '1.1', 'all' );
 		wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css', false, '1.1', 'all' );
 		wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.1', 'all' );
