@@ -47,12 +47,7 @@ add_action( 'wp_enqueue_scripts', 'dbmenu_namespace_scripts_styles' );
 function dbmenu_namespace_scripts_styles() {
 	$dir = plugin_dir_url(__FILE__) . 'assets/';
 	wp_enqueue_style('dbmenu_google-font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
-	wp_enqueue_style('dbmenu_font-awesome','https://pro.fontawesome.com/releases/v5.5.0/css/all.css',
-		array(
-			"integrity" => "sha384-j8y0ITrvFafF4EkV1mPW0BKm6dp3c+J9Fky22Man50Ofxo2wNe5pT1oZejDH9/Dt",
-			"crossorigin" => "anonymous"
-		)
-	);
+	wp_enqueue_style('dbmenu_font-awesome','https://pro.fontawesome.com/releases/v5.5.0/css/all.css');
 
 	wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css', false, '1.1', 'all' );
 	wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css', false, '1.1', 'all' );
