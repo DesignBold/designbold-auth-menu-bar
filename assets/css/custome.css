@@ -41,3 +41,6 @@ body.logged-in.admin-bar header.db-header {
 	line-height: 1.2;
 	font-size: 16px;
 }
+.db-header .main-menu > ul > li ul{
+    display: block;
+}
