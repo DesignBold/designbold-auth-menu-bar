@@ -48,7 +48,7 @@ if($dbmenu_option_app_key != '' && $dbmenu_option_app_secret != ''){
 		$dir = plugin_dir_url(__FILE__);
 		wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css', false, '1.1', 'all' );
 		wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css', false, '1.1', 'all' );
-		wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.1', 'all' );
+		wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.2', 'all' );
 
 		wp_enqueue_script( 'dbmenu_popper.js', $dir . 'js/popper.js', array ( 'jquery' ), 1.1, true);
 		wp_enqueue_script( 'dbmenu_bootstrap.min.js', $dir . 'js/bootstrap.min.js', array ( 'jquery' ), 1.1, true);
