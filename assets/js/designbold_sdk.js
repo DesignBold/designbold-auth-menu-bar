@@ -25,10 +25,6 @@ function getHostName(url) {
     }
 }
 
-DBMN.baseUrl = function(){
-    return dbtopbarconfig.baseUrl+'/';
-}
-
 DBMN.app = {
     'app_key' : dbtopbarconfig.options.app_key,
     'app_secret' : dbtopbarconfig.options.app_secret,
@@ -41,8 +37,7 @@ DBMN.designbold_login = function(){
     var w = '600';
     var h = '400';
     var title = 'Designbold login';
-    var baseUrl = DBMN.baseUrl();
-    var url = baseUrl + 'wp-content/plugins/designbold-auth-menu-bar-master/designbold.php?action=connect';
+    var url = dbtopbarconfig.options.app_redirect_url + '&db_action=connect';
     DBMN.popupwindow(url, title, w, h);
 }
 
