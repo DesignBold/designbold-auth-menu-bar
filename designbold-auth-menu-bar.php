@@ -98,7 +98,8 @@ function dbmenu_namespace_scripts_styles() {
 		'pluginUrl' => DBMN_URL . '/designbold.php',
 		'options' => array (
 			'app_key' => get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "",
-			'app_secret'  => get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : ""
+			'app_secret'  => get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : "",
+			'app_redirect_url'  => admin_url('admin-ajax.php?action=db-process-login')
 		)
 	) );
 }
@@ -196,7 +197,7 @@ add_action('wp_ajax_db-process-login', 'db_process_login');
 function db_process_login() {
 	if(file_exists(DBMN_DIR . '/designbold.php')) {
 		include('designbold.php');
-		$action = isset($_GET['action']) ? $_GET['action'] : 'callback';
+		$action = isset($_GET['db_action']) ? $_GET['db_action'] : 'callback';
 		if ($action == 'connect'){
 			connect();
 		}
