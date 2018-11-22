@@ -200,7 +200,7 @@ DBMN.getUserInfo = function(access_token){
         var user_template = _.template($('#db_user_nav_tmpl').html());
         
         $('#designbold_user_info').html(user_template({
-            user : DBMN.userInfoAPI.response,
+            user : DBMN.userInfoAPI.response.user,
         })).show();
         $('#designbold_login_nav').removeClass("d-sm-block");
     })
