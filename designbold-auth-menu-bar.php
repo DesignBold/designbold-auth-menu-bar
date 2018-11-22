@@ -160,3 +160,19 @@ function db_save_option() {
 	}
 	exit(0);
 }
+
+add_action('wp_ajax_nopriv_db-login-process', 'db_login_process');
+add_action('wp_ajax_db-login-process', 'db_login_process');
+function db_login_process() {
+	die('abhfbjsdf');
+	include('designbold.php');
+	
+	$action = isset($_GET['action']) ? $_GET['action'] : 'callback';
+	if ($action == 'connect'){
+		connect();
+	}
+	else{
+		callback();
+	}
+	exit(0);
+}
