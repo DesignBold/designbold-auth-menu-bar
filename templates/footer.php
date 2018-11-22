@@ -5,7 +5,7 @@
             <div class="company">
 
                 <a href="https://www.designbold.com/" class="logo">
-                    <img alt="" src="<?= $dir ?>assets/images/logo_white.svg">
+                    <img alt="" src="<?= DBMN_ASSETS_INC ?>/images/logo_white.svg">
                 </a>
                 <div class="social">
                     <a class="facebook" href="https://www.facebook.com/designbolddotcom/" target="_blank" rel="nofollow">

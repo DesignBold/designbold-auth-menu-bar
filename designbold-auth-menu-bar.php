@@ -36,6 +36,26 @@ define( 'DBMN_ADMIN_INC', DBMN_URL . '/admin' );
 define( 'DBMN_ASSETS_INC', DBMN_URL . '/assets' );
 define( 'DBMN_TEMP_INC', DBMN_URL . '/templates' );
 
+/**
+ * The code that runs during plugin activation (but not during updates).
+ */
+function dbmenu_activate() {
+	if ( version_compare( phpversion(), '5.4', '<' ) ) {
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+		wp_die( 'Designbold menu requires PHP version 5.4 or higher. Plugin was deactivated.' );
+	}
+}
+
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-disqus-deactivator.php
+ */
+function dbmenu_deactivate() {
+	// Do something
+}
+
+register_activation_hook( __FILE__, 'dbmenu_activate' );
+register_deactivation_hook( __FILE__, 'dbmenu_deactivate' );
 
 // Add html
 add_action('wp_footer', 'dbmenu_add_header_and_footer');
