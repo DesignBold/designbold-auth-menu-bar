@@ -26,11 +26,21 @@ along with {Designit Menu}. If not, see {Plugin URI}.
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+define( 'DBMN_FILE', __FILE__ ); // this file
+define( 'DBMN_URL', plugin_dir_url(__FILE__) ); // Url to file
+define( 'DBMN_BASENAME', plugin_basename( DBMN_FILE ) ); // plugin name as known by WP
+define( 'DBMN_DIR', dirname( DBMN_FILE ) ); // our directory
+define( 'DBMN', ucwords( str_replace( '-', ' ', dirname( DBMN_BASENAME ) ) ) );
+
+define( 'DBMN_ADMIN_INC', DBMN_URL . '/admin' );
+define( 'DBMN_ASSETS_INC', DBMN_URL . '/assets' );
+define( 'DBMN_TEMP_INC', DBMN_URL . '/templates' );
+
+
 // Add html
 add_action('wp_footer', 'dbmenu_add_header_and_footer');
 function dbmenu_add_header_and_footer (){
-	$dir = plugin_dir_url(__FILE__) . '/';
-	$config = json_decode(file_get_contents($dir."config.json"));
+	$config = json_decode(file_get_contents(DBMN_URL . "/config.json"));
 	include('templates/header.php');
 	include('templates/footer.php');
 }
@@ -45,7 +55,7 @@ function multisite_body_classes($classes) {
 // Add list css, js for plugin
 add_action( 'wp_enqueue_scripts', 'dbmenu_namespace_scripts_styles' );
 function dbmenu_namespace_scripts_styles() {
-	$dir = plugin_dir_url(__FILE__) . 'assets/';
+	$dir = DBMN_ASSETS_INC . '/';
 	wp_enqueue_style('dbmenu_google-font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
 	wp_enqueue_style('dbmenu_font-awesome','https://pro.fontawesome.com/releases/v5.5.0/css/all.css');
 
@@ -65,7 +75,7 @@ function dbmenu_namespace_scripts_styles() {
 
 	wp_localize_script( 'dbmenu_designbold_sdk.js', 'dbtopbarconfig', array(
 		'baseUrl' => get_option('siteurl') != '' ? get_option('siteurl') : "",
-		'pluginUrl' => plugins_url('/designbold-auth-menu-bar/designbold.php'),
+		'pluginUrl' => DBMN_URL . '/designbold.php',
 		'options' => array (
 			'app_key' => get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "",
 			'app_secret'  => get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : ""
@@ -73,14 +83,14 @@ function dbmenu_namespace_scripts_styles() {
 	) );
 }
 
-
+// Registers a navigation menu location for a theme.
 register_nav_menu( 'designbold-menu', __( 'Designbold menu', 'designbold-menu' ) );
 
 // Add item to admin menu
 add_action('admin_menu', 'dbmenu_add_admin_menu');
 function dbmenu_add_admin_menu() {
 	//create new top-level menu
-	$icon = plugins_url('designbold-auth-menu-bar/assets/images/16.png');
+	$icon = DBMN_ASSETS_INC . '/images/16.png';
 	add_menu_page( 'Designit menu option', 'Designit menu', 'manage_options', 'designit-menu', 'dbmenu_plugin_setting_page', $icon);
 }
 
@@ -133,7 +143,6 @@ function dbmenu_plugin_setting_page() {
 <?php } 
 
 // Call update option function
-
 add_action('wp_ajax_nopriv_db-save-option', 'db_save_option');
 add_action('wp_ajax_db-save-option', 'db_save_option');
 function db_save_option() {
@@ -161,18 +170,19 @@ function db_save_option() {
 	exit(0);
 }
 
-add_action('wp_ajax_nopriv_db-login-process', 'db_login_process');
-add_action('wp_ajax_db-login-process', 'db_login_process');
-function db_login_process() {
-	die('abhfbjsdf');
-	include('designbold.php');
-	
-	$action = isset($_GET['action']) ? $_GET['action'] : 'callback';
-	if ($action == 'connect'){
-		connect();
+// Handle login through designbold.php
+add_action('wp_ajax_nopriv_db-process-login', 'db_process_login');
+add_action('wp_ajax_db-process-login', 'db_process_login');
+function db_process_login() {
+	if(file_exists(DBMN_DIR . '/designbold.php')) {
+		include('designbold.php');
+		$action = isset($_GET['action']) ? $_GET['action'] : 'callback';
+		if ($action == 'connect'){
+			connect();
+		}
+		else{
+			callback();
+		}
+		exit(0);
 	}
-	else{
-		callback();
-	}
-	exit(0);
 }

@@ -28,7 +28,7 @@ class DesignboldSampleSdk {
 
         $this->app_key = $options_app_key;
         $this->app_secret = $options_app_secret;
-        $this->redirect_url = plugins_url('/designbold-auth-menu-bar/designbold.php');
+        $this->redirect_url = DBMN_URL . '/designbold.php';
         $this->scope = isset($params['scope']) ? $params['scope']  : "";
         $this->sdk_version = isset($params['sdk_version']) ? $params['sdk_version'] : "v3";
         $this->internal_debug = isset($params['internal_debug']) ? $params['internal_debug'] : false;
@@ -186,7 +186,7 @@ function connect(){
     $designbold_sdk = new DesignboldSampleSdk([
         'app_key' => $options_app_key,
         'app_secret' => $options_app_secret,
-        'redirect_url' => plugins_url('/designbold-auth-menu-bar-master/designbold.php'),
+        'redirect_url' => DBMN_URL . '/designbold.php',
         'internal_debug' => false,
         'scope' => '*.*',
     ]);
@@ -204,7 +204,7 @@ function callback(){
         $designbold_sdk = new DesignboldSampleSdk([
             'app_key' => $options_app_key,
             'app_secret' => $options_app_secret,
-            'redirect_url' => plugins_url('/designbold-auth-menu-bar-master/designbold.php'),
+            'redirect_url' => DBMN_URL . '/designbold.php',
             'internal_debug' => false,
             'scope' => '*.*',
         ]);
@@ -249,13 +249,4 @@ function callback(){
     }
     exit();
 }
-
-$action = isset($_GET['action']) ? $_GET['action'] : 'callback';
-if ($action == 'connect'){
-    connect();
-}
-else{
-    callback();
-}
-
 ?>

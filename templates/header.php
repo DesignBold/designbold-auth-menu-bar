@@ -2,16 +2,16 @@
     <div class="container">
         <div class="pull-left" id="designbold_nav_main_menu">
             <?php if($config->header->logo !== '') : ?>
-            <a href="<%= $config->header->home %>" class="logo">
-                <img alt="" src="<%= $config->header->logo %>">
-            </a>
-            <a href="<%= $config->header->home %>" class="logo-white">
-                <img alt="" src="<%= $config->header->logo %>">
-            </a>
+                <a href="<%= $config->header->home %>" class="logo">
+                    <img alt="" src="<%= $config->header->logo %>">
+                </a>
+                <a href="<%= $config->header->home %>" class="logo-white">
+                    <img alt="" src="<%= $config->header->logo %>">
+                </a>
             <?php endif; ?>
             <nav class="main-menu d-none d-lg-block">
                 <?php 
-                    wp_nav_menu(array(
+                wp_nav_menu(array(
                     'menu' => get_option('dbmenu_option_menu_name'),
                     'container'       => '',
                     'container_class' => '',
@@ -19,7 +19,7 @@
                     'fallback_cb'     => 'wp_page_menu',
                     'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                     'depth'           => 0
-                )); ?>
+                ));?>
             </nav>
         </div>
         <div class="pull-right">
@@ -37,15 +37,15 @@
     </div>
     <nav class="menu-res" id="designbold_nav_menu_res">
         <div class="menu-res-inner">
-        <?php wp_nav_menu(array(
-            'menu' => get_option('dbmenu_option_menu_name'),
-            'container'       => '',
-            'container_class' => '',
-            'echo'            => true,
-            'fallback_cb'     => 'wp_page_menu',
-            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-            'depth'           => 0
-        )); ?>
+            <?php wp_nav_menu(array(
+                'menu' => get_option('dbmenu_option_menu_name'),
+                'container'       => '',
+                'container_class' => '',
+                'echo'            => true,
+                'fallback_cb'     => 'wp_page_menu',
+                'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                'depth'           => 0
+            )); ?>
         </div>
     </nav>
 </header>
