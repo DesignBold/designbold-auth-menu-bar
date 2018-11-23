@@ -81,7 +81,7 @@ function dbmenu_namespace_scripts_styles() {
 
 	wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css', false, '1.1', 'all' );
 	wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css', false, '1.1', 'all' );
-	wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.4', 'all' );
+	wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.5', 'all' );
 
 
 	// 3rd party

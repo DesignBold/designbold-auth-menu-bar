@@ -18,6 +18,9 @@ body.logged-in.admin-bar header.db-header {
 	font-size: 14px;
 	z-index: 99999;
 }
+.db-header .user-info{
+	margin-top: 10px;
+}
 .db-header .main-menu ul li{
 	padding: 0 !important;
 }
