@@ -138,17 +138,17 @@ function dbmenu_plugin_setting_page() {
 				</tr>
 
 				<tr class="form-field form-required">
-					<th scope="row">App secret <span class="description">(required)</span></th>
+					<th scope="row">Menu location <span class="description">(required)</span></th>
 					<td>
 						<select name="dbmenu_option_menu_name">
 							<?php 
-							$menus = get_terms('nav_menu');
+							$menus = get_nav_menu_locations();
 							$active = get_option('dbmenu_option_menu_name');
-							foreach($menus as $menu){
-								if($menu->slug == $active){
-									echo '<option selected value="'.$menu->slug.'">'. $menu->name . "</option>";
+							foreach($menus as $menu => $val){
+								if($menu == $active){
+									echo '<option selected value="'.$menu.'">'. $menu . "</option>";
 								}else{
-									echo '<option value="'.$menu->slug.'">'. $menu->name . "</option>";
+									echo '<option value="'.$menu.'">'. $menu . "</option>";
 								}
 							} 
 							?>
