@@ -56,7 +56,7 @@ body.logged-in.admin-bar header.db-header {
 .db-header .main-menu ul li:first-child {
     margin-left: 0;
 }
-.db-header .main-menu ul li:first-child>a{
+.db-header .main-menu>ul>li:first-child>a{
 	padding-left: 0;
 }
 .db-header .user-info{
