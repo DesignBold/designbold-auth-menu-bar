@@ -33,12 +33,20 @@ DBMN.app = {
     'scope' : '*.*'
 }
 
+// Safari 3.0+ "[object HTMLElementConstructor]" 
+DBMN.isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+
 DBMN.designbold_login = function(){
-    var w = '600';
-    var h = '400';
-    var title = 'Designbold login';
-    var url = dbtopbarconfig.options.app_redirect_url + '&db_action=connect';
-    DBMN.popupwindow(url, title, w, h);
+    // check safari
+    if( ! DBMN.isSafari ){
+        var w = '600';
+        var h = '400';
+        var title = 'Designbold login';
+        var url = dbtopbarconfig.options.app_redirect_url + '&db_action=connect';
+        DBMN.popupwindow(url, title, w, h);
+    }else{
+        window.location.href = dbtopbarconfig.safari_url;
+    }
 }
 
 DBMN.popupwindow = function(url, title, w, h){
@@ -199,8 +207,9 @@ DBMN.getUserInfo = function(access_token){
         DBMN.userInfoAPI = JSON.parse(value);
         var user_template = _.template($('#db_user_nav_tmpl').html());
         
+        $('#designbold_login_nav').css("display","block");
         $('#designbold_user_info').html(user_template({
-            user : DBMN.userInfoAPI.response.user,
+            user : DBMN.userInfoAPI.response.account,
         })).show();
         $('#designbold_login_nav').removeClass("d-sm-block");
     })

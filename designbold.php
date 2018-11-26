@@ -177,6 +177,23 @@ class DesignboldSampleSdk {
     public function getAuthenticateUrl(){
         return $this->base_url . "authentication";
     }
+
+    public function getCookie ($name) {
+        return $_COOKIE["access_token"];
+    }
+
+    public function setCookie ($cname, $cvalue, $exdays){
+        setcookie($cname, $cvalue, time() + (86400 * $exdays), "/");
+    }
+
+    public function delete_cookie ($name) {
+        if (isset($_COOKIE[$name])) {
+            unset($_COOKIE[$name]);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 function connect(){
@@ -215,29 +232,42 @@ function callback(){
                 echo 'No create access token';
             }
             else{
-                echo "
-                <script>
-                try {
-                    if (window.opener !== null) {
-                        if (typeof window.opener.signUpComplete === 'function') {
-                            window.onunload = function () {
-                                window.opener.signUpComplete('".$designbold_sdk->access_token."', '".$designbold_sdk->refresh_token."');
-                            };
+                if (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) {
+
+                    $siteUrl = get_option('siteurl') != '' ? get_option('siteurl') : "";
+                    $designbold_sdk->setcookie('access_token', $designbold_sdk->access_token, 1);
+                    $designbold_sdk->setcookie('refresh_token', $designbold_sdk->refresh_token, 1095);
+
+                    echo '
+                    <script type="text/javascript">
+                    window.location.replace("' . $siteUrl . '");
+                    </script>
+                    ';
+                }else{
+                    echo "
+                    <script>
+                    try {
+                        if (window.opener !== null) {
+                            if (typeof window.opener.signUpComplete === 'function') {
+                                window.onunload = function () {
+                                    window.opener.signUpComplete('".$designbold_sdk->access_token."', '".$designbold_sdk->refresh_token."');
+                                };
+                            }
+                            else {
+                                window.opener.location.reload(true);
+                            }
+                            window.focus();
+                            window.close();
                         }
                         else {
-                            window.opener.location.reload(true);
+
                         }
-                        window.focus();
-                        window.close();
                     }
-                    else {
+                    catch (err) {
 
                     }
+                    </script>";
                 }
-                catch (err) {
-
-                }
-                </script>";
             }
         }
         catch (Exception $exception){

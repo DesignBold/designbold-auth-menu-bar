@@ -53,15 +53,15 @@
 <script type="text/template" id="db_user_nav_tmpl">
     <div class="user-avatar" data-toggle="dropdown">
         <span class="user-type">PRO</span>
-        <img alt="<%= user.fullname %>" src="<%= user.avatar %>">
+        <img alt="<%= user.name %>" src="<%= user.avatar %>">
     </div>
     <div class="dropdown-menu user-info-dropdown">
         <div class="user-head">
             <div class="uh-avatar">
                 <img alt="" src="<%= user.avatar %>">
             </div>
-            <h3><%= user.fullname %>
-                <% if ([3,8].indexOf(user.group_id) != -1){ %>
+            <h3><%= user.name %>
+                <% if ([3,8,13].indexOf(user.group_id) != -1){ %>
                 <span class="upgrade">Upgrade</span>
                 <% } %>
             </h3>
@@ -101,10 +101,17 @@
                 </a>
             </li>
             <li>
-                <a href="https://www.designbold.com/<%= user.fullname %>" title="Profile" target="_blank">
+                <% if(user.slug !== ''){ %>
+                <a href="https://www.designbold.com/<%= user.name %>" title="Profile" target="_blank">
                     <i class="fal fa-user"></i>
                     <span class="db-text"> Profile</span>
                 </a>
+                <% }else{ %>
+                <a href="https://www.designbold.com/account/<%= user.hash_id %>" title="Profile" target="_blank">
+                    <i class="fal fa-user"></i>
+                    <span class="db-text"> Profile</span>
+                </a>
+                <% } %>
             </li>
             <li class="active">
                 <a href="https://www.designbold.com/account/setting" title="Account settings" target="_blank"><i class="fal fa-cog"></i>

@@ -81,7 +81,7 @@ function dbmenu_namespace_scripts_styles() {
 
 	wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css', false, '1.1', 'all' );
 	wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css', false, '1.1', 'all' );
-	wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.5', 'all' );
+	wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.8', 'all' );
 
 
 	// 3rd party
@@ -100,7 +100,8 @@ function dbmenu_namespace_scripts_styles() {
 			'app_key' => get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "",
 			'app_secret'  => get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : "",
 			'app_redirect_url'  => admin_url('admin-ajax.php?action=db-process-login')
-		)
+		),
+		'safari_url' => admin_url('admin-ajax.php?action=db-process-login&db_action=connect')
 	) );
 }
 
