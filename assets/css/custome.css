@@ -66,3 +66,6 @@ body.logged-in.admin-bar header.db-header {
 	font-weight: normal;
 	color: #353535;
 }
+.db-header .main-menu > ul > li ul li a{
+	font-weight: normal;
+}
