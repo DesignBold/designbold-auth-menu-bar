@@ -78,20 +78,19 @@ function dbmenu_namespace_scripts_styles() {
 	$dir = DBMN_ASSETS_INC . '/';
 	wp_enqueue_style('dbmenu_google-font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
 	wp_enqueue_style('dbmenu_font-awesome','https://pro.fontawesome.com/releases/v5.5.0/css/all.css');
-
-	wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css', false, '1.1', 'all' );
-	wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css', false, '1.1', 'all' );
-	wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, '1.9', 'all' );
+	wp_enqueue_style( 'dbmenu_bootstrap.min.css', $dir . 'css/bootstrap.min.css');
+	wp_enqueue_style( 'dbmenu_style', $dir . 'css/main.css');
+	wp_enqueue_style( 'dbmenu_custome', $dir . 'css/custome.css', false, time());
 
 
 	// 3rd party
 	//plugin source
 	wp_enqueue_script( 'dbmenu_underscore.js', 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js');
-	wp_enqueue_script( 'dbmenu_jquery.min.js', $dir . 'js/jquery.min.js', array ( 'jquery' ), 1.1, true);
-	wp_enqueue_script( 'dbmenu_popper.js', $dir . 'js/popper.js', array ( 'jquery' ), 1.1, true);
-	wp_enqueue_script( 'dbmenu_bootstrap.min.js', $dir . 'js/bootstrap.min.js', array ( 'jquery' ), 1.1, true);
-	wp_enqueue_script( 'dbmenu_main.js', $dir . 'js/main.js', array ( 'jquery' ), 1.1, true);
-	wp_enqueue_script( 'dbmenu_designbold_sdk.js', $dir . 'js/designbold_sdk.js', array ( 'jquery' ), 1.1, true);
+	wp_enqueue_script( 'dbmenu_jquery.min.js', $dir . 'js/jquery.min.js');
+	wp_enqueue_script( 'dbmenu_popper.js', $dir . 'js/popper.js');
+	wp_enqueue_script( 'dbmenu_bootstrap.min.js', $dir . 'js/bootstrap.min.js');
+	wp_enqueue_script( 'dbmenu_main.js', $dir . 'js/main.js');
+	wp_enqueue_script( 'dbmenu_designbold_sdk.js', $dir . 'js/designbold_sdk.js', array(), time());
 
 	wp_localize_script( 'dbmenu_designbold_sdk.js', 'dbtopbarconfig', array(
 		'baseUrl' => get_option('siteurl') != '' ? get_option('siteurl') : "",

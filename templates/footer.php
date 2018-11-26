@@ -3,7 +3,6 @@
     <div class="container">
         <div class="footer-left">
             <div class="company">
-
                 <a href="https://www.designbold.com/" class="logo">
                     <img alt="" src="<?= DBMN_ASSETS_INC ?>/images/logo_white.svg">
                 </a>
@@ -25,8 +24,6 @@
                 Contact us:</p>
                 <p>Email: academy@designbold.com</p>
             </div>
-
-
         </div>
         <div class="footer-right">
             <div class="footer-col">
