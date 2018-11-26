@@ -32,9 +32,9 @@ define( 'DBMN_BASENAME', plugin_basename( DBMN_FILE ) ); // plugin name as known
 define( 'DBMN_DIR', dirname( DBMN_FILE ) ); // our directory
 define( 'DBMN', ucwords( str_replace( '-', ' ', dirname( DBMN_BASENAME ) ) ) );
 
-define( 'DBMN_ADMIN_INC', DBMN_URL . '/admin' );
-define( 'DBMN_ASSETS_INC', DBMN_URL . '/assets' );
-define( 'DBMN_TEMP_INC', DBMN_URL . '/templates' );
+define( 'DBMN_ADMIN_INC', DBMN_URL . 'admin' );
+define( 'DBMN_ASSETS_INC', DBMN_URL . 'assets' );
+define( 'DBMN_TEMP_INC', DBMN_URL . 'templates' );
 
 /**
  * The code that runs during plugin activation (but not during updates).
@@ -60,9 +60,9 @@ register_deactivation_hook( __FILE__, 'dbmenu_deactivate' );
 // Add html
 add_action('wp_footer', 'dbmenu_add_header_and_footer');
 function dbmenu_add_header_and_footer (){
-	$config = json_decode(file_get_contents(DBMN_URL . "/config.json"));
+	$config = json_decode(file_get_contents(DBMN_URL . "config.json"));
 	include('templates/header.php');
-	include('templates/footer.php');
+	include('templates/footer.html');
 }
 
 // Add class for the body element
@@ -94,13 +94,14 @@ function dbmenu_namespace_scripts_styles() {
 
 	wp_localize_script( 'dbmenu_designbold_sdk.js', 'dbtopbarconfig', array(
 		'baseUrl' => get_option('siteurl') != '' ? get_option('siteurl') : "",
-		'pluginUrl' => DBMN_URL . '/designbold.php',
+		'pluginUrl' => DBMN_URL . 'designbold.php',
 		'options' => array (
 			'app_key' => get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "",
 			'app_secret'  => get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : "",
 			'app_redirect_url'  => admin_url('admin-ajax.php?action=db-process-login')
 		),
-		'safari_url' => admin_url('admin-ajax.php?action=db-process-login&db_action=connect')
+		'safari_url' => admin_url('admin-ajax.php?action=db-process-login&db_action=connect'),
+		'logo_white' => DBMN_ASSETS_INC . '/images/logo_white.svg'
 	) );
 }
 
