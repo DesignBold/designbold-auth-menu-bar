@@ -97,7 +97,6 @@ function dbmenu_namespace_scripts_styles() {
 		'pluginUrl' => DBMN_URL . 'designbold.php',
 		'options' => array (
 			'app_key' => get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "",
-			'app_secret'  => get_option('dbmenu_option_app_secret') != '' ? get_option('dbmenu_option_app_secret') : "",
 			'app_redirect_url'  => admin_url('admin-ajax.php?action=db-process-login')
 		),
 		'safari_url' => admin_url('admin-ajax.php?action=db-process-login&db_action=connect'),
@@ -134,11 +133,6 @@ function dbmenu_plugin_setting_page() {
 				</tr>
 
 				<tr class="form-field form-required">
-					<th scope="row">App secret <span class="description">(required)</span></th>
-					<td><input type="text" name="dbmenu_option_app_secret" value="<?php echo esc_attr( get_option('dbmenu_option_app_secret') ); ?>" placeholder="app secret"/></td>
-				</tr>
-
-				<tr class="form-field form-required">
 					<th scope="row">Menu location <span class="description">(required)</span></th>
 					<td>
 						<select name="dbmenu_option_menu_name">
@@ -172,20 +166,16 @@ function db_save_option() {
 		$app_key = 
 		isset($_POST['dbmenu_option_app_key']) ? sanitize_text_field($_POST['dbmenu_option_app_key']) : "";
 
-		$app_secret = 
-		isset($_POST['dbmenu_option_app_secret']) ? sanitize_text_field($_POST['dbmenu_option_app_secret']) : "";
-
 		$menu_name = 
 		isset($_POST['dbmenu_option_menu_name']) ? sanitize_text_field($_POST['dbmenu_option_menu_name']) : "";
 
-		add_action( 'alter_item', 'dbmenu_update_option', 10, 3 );
-		function dbmenu_update_option($app_key, $app_secret, $menu_name) {
+		add_action( 'alter_item', 'dbmenu_update_option', 10, 2 );
+		function dbmenu_update_option($app_key, $menu_name) {
 			update_option( 'dbmenu_option_app_key', $app_key, 'yes');
-			update_option( 'dbmenu_option_app_secret', $app_secret, 'yes');
 			update_option( 'dbmenu_option_menu_name', $menu_name, 'yes');
 		}
 
-		do_action('alter_item', $app_key, $app_secret, $menu_name);
+		do_action('alter_item', $app_key, $menu_name);
 		// redirect when complete
 		wp_safe_redirect('admin.php?page=designit-menu');
 	}

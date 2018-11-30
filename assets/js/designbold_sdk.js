@@ -1,11 +1,7 @@
-/*
-+ convert json data to html
-+ build logout
-+ 
-*/
 var DBMN = DBMN || {};
 DBMN.tokenExpire = {};
 DBMN.userInfoAPI = {};
+DBMN.access_token_default = 'b0f99ceb3d596cb8e7152088548c41e981920c0bd92312047fd8e75b9eee440d';
 
 DBMN.box_login_signup = document.getElementById('designbold_login_nav');
 DBMN.btn_login = document.getElementById('designbold_login');
@@ -27,7 +23,6 @@ function getHostName(url) {
 
 DBMN.app = {
     'app_key' : dbtopbarconfig.options.app_key,
-    'app_secret' : dbtopbarconfig.options.app_secret,
     'redirect_url' : dbtopbarconfig.pluginUrl,
     'internal_debug' : false,
     'scope' : '*.*'
@@ -106,6 +101,8 @@ DBMN.checkLogin = function(){
                 DBMN.refreshToken(refresh_token);
             }
         });
+    }else{
+        DBMN.getUserInfo(DBMN.access_token_default);
     }
 }
 
@@ -137,7 +134,7 @@ DBMN.checkAccessTokenExpires = function(access_token){
 DBMN.i_refresh = 0;
 DBMN.refreshToken = function(refresh_token){
     var rfToken = new Promise (function (resolve, reject){
-        var data = "app_key=" + DBMN.app.app_key + "&redirect_uri=" + DBMN.app.redirect_url + "&app_secret=" + DBMN.app.app_secret + "&grant_type=refresh_token&refresh_token=" + refresh_token + "&undefined=";
+        var data = "app_key=" + DBMN.app.app_key + "&redirect_uri=" + DBMN.app.redirect_url + "&grant_type=refresh_token&refresh_token=" + refresh_token + "&undefined=";
 
         var xhr = new XMLHttpRequest();
         xhr.withCredentials = false;
@@ -167,13 +164,13 @@ DBMN.refreshToken = function(refresh_token){
     })
     .catch(function(rej){
         if(rej == 406){
-            if(DBMN.i_refresh <= 2){
-                console.log(DBMN.i_refresh);
+            if(DBMN.i_refresh <= 5){
                 DBMN.i_refresh++;
                 DBMN.refreshToken(refresh_token);
             }else{
                 DBMN.delete_cookie('access_token');
                 DBMN.delete_cookie('refresh_token');
+                DBMN.getUserInfo(DBMN.access_token_default);
                 location.reload();
             }
         }
@@ -205,13 +202,15 @@ DBMN.getUserInfo = function(access_token){
 
     userInfo.then(function(value){
         DBMN.userInfoAPI = JSON.parse(value);
-        var user_template = _.template($('#db_user_nav_tmpl').html());
-        
-        $('#designbold_login_nav').css("display","block");
-        $('#designbold_user_info').html(user_template({
-            user : DBMN.userInfoAPI.response.account,
-        })).show();
-        $('#designbold_login_nav').removeClass("d-sm-block");
+        if (DBMN.userInfoAPI.response.user.hash_id !== 'guest') {
+            var user_template = _.template($('#db_user_nav_tmpl').html());
+            $('#designbold_user_info').html(user_template({
+                user : DBMN.userInfoAPI.response.account,
+            })).show();
+        }else{
+            var box_login_signup_tmp = _.template($('#db_user_designbold_login_nav_tmpl').html());
+            $('#designbold_login_nav').html(box_login_signup_tmp);
+        }
     })
     .catch(function(rej){
         console.log(rej);
