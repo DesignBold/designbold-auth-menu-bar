@@ -276,9 +276,14 @@ function dbmenu_save_account( $access_token = NULL, $refresh_token = NULL ){
 
 		if( $result !== '' ) :
 
+			$res_account = $result['response']['account'];
 			$user = $result['response']['user'];
 			$account = $result['response']['account'];
-			$website = "https://designbold.com";
+			if( $res_account['slug'] !== '' ) :
+				$website = 'https://www.designbold.com/' . $res_account['slug'];
+			else :
+				$website = 'https://www.designbold.com/' . $res_account['hash_id'];
+			endif;
 
 			$userdata = array(
 				'user_login'  =>  $user['username'],
