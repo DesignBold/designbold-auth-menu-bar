@@ -27,9 +27,7 @@
                 <i class="fal fa-bars"></i>
             </div>
             <div class="user-link d-none d-sm-block" id='designbold_login_nav'>
-                <a href="javascript:" id="designbold_login" onclick="DBMN.designbold_login()" class="login"><span class="db-text">
-                Login</span></a>
-                <a href="javascript:" id="designbold_signup" class="signup"> <span class="db-text">Sign up</span></a>
+                
             </div>
             <div id="designbold_user_info" class="user-info dropdown"></div>
         </div>
@@ -50,9 +48,17 @@
     </nav>
 </header>
 
+<script type="text/template" id="db_user_designbold_login_nav_tmpl">
+    <a href="javascript:" id="designbold_login" onclick="DBMN.designbold_login()" class="login"><span class="db-text">
+    Login</span></a>
+    <a href="javascript:" id="designbold_signup" onclick="DBMN.designbold_login()" class="signup"> <span class="db-text">Sign up</span></a>
+</script>
+
 <script type="text/template" id="db_user_nav_tmpl">
     <div class="user-avatar" data-toggle="dropdown">
+        <% if ([3,8,13].indexOf(user.group_id) != -1){ %>
         <span class="user-type">PRO</span>
+        <% } %>
         <img alt="<%= user.name %>" src="<%= user.avatar %>">
     </div>
     <div class="dropdown-menu user-info-dropdown">
@@ -102,7 +108,7 @@
             </li>
             <li>
                 <% if(user.slug !== ''){ %>
-                <a href="https://www.designbold.com/<%= user.name %>" title="Profile" target="_blank">
+                <a href="https://www.designbold.com/<%= user.slug %>" title="Profile" target="_blank">
                     <i class="fal fa-user"></i>
                     <span class="db-text"> Profile</span>
                 </a>

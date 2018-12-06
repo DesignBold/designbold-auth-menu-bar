@@ -69,164 +69,76 @@ DBMN.delete_cookie = function(name) {
 
 // Check login when website start
 DBMN.checkLogin = function(){
-    var access_token = DBMN.getCookie('access_token');
-    var refresh_token = DBMN.getCookie('refresh_token');
+    var access_token = dbtopbarconfig.access_token;
+    var refresh_token = dbtopbarconfig.refresh_token;
 
     if(typeof access_token != "undefined" && access_token != null && access_token != "" && typeof refresh_token !== "undefined" && refresh_token != null && refresh_token != ""){
-        // Kiểm tra xem access_token đã hết hạn hay chưa. nếu trả về 204 là đã hết hạn
-        var expires = DBMN.checkAccessTokenExpires(access_token);
-
-        expires.then(function(result_expires){
-            // console.log(result_expires);
-        })
-        .then(function(result2){
-            // Retreive access token
-            var new_access_token = DBMN.getCookie('access_token');
-
-            if(new_access_token){
-                $('#designbold_login_nav').removeClass("d-sm-block");
-                // DBMN.btn_res_login.style.display = "none";
-                // DBMN.btn_res_signup.style.display = "none";
-                DBMN.getUserInfo(DBMN.getCookie('access_token'));
-            }
-        })
-        .catch(function(rej){
-            // Reject of access token invalid
-            if(rej == 204){
-                DBMN.refreshToken(refresh_token);
-            }
-
-            // Reject no create access token
-            if(rej == 500){
-                DBMN.refreshToken(refresh_token);
-            }
-        });
+        $('#designbold_login_nav').removeClass("d-sm-block");
+        // DBMN.btn_res_login.style.display = "none";
+        // DBMN.btn_res_signup.style.display = "none";
+        DBMN.getUserInfo( access_token );
     }else{
-        DBMN.getUserInfo(DBMN.access_token_default);
+        DBMN.getUserInfo( DBMN.access_token_default );
     }
 }
 
-// Check access token expires
-DBMN.checkAccessTokenExpires = function(access_token){
-    return new Promise (function (resolve, reject){
-        var data = "access_token=" + access_token + "&undefined=";
-        var xhr = new XMLHttpRequest();
-        xhr.withCredentials = false;
+DBMN.getUserInfo = function( access_token ){
+    if( access_token !== '' ) {
+        var userInfo = new Promise (function (resolve, reject){
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
 
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                if(xhr.status == 200){
-                    resolve(this.response);
-                }else{
-                    return reject(this.status);
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    if(xhr.status == 200){
+                        resolve(this.response);
+                    }else{
+                        reject(this.statusText);
+                    }
                 }
-            }
+            });
+
+            xhr.open("GET", "https://api.designbold.com/v3/user/me");
+            xhr.setRequestHeader("Authorization", "Bearer " + access_token);
+            xhr.send();
         });
 
-        xhr.open("POST", "https://accounts.designbold.com/v2/oauth/tokeninfo");
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(data);
-    });
-}
-
-// Thực hiện DBMN.refreshToken nếu kết quả trả về khác 200, 406 thì retry 5 lần 
-// sau 5 lần không được thì xóa hết token cookie (coi như đã logout).
-DBMN.i_refresh = 0;
-DBMN.refreshToken = function(refresh_token){
-    var rfToken = new Promise (function (resolve, reject){
-        var data = "app_key=" + DBMN.app.app_key + "&redirect_uri=" + DBMN.app.redirect_url + "&grant_type=refresh_token&refresh_token=" + refresh_token + "&undefined=";
-
-        var xhr = new XMLHttpRequest();
-        xhr.withCredentials = false;
-
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                // 406 : refresh_token expires
-                if(xhr.status == 200){
-                    resolve(this.response);
-                }else{
-                    return reject(this.status);
-                }
-            }
-        });
-
-        xhr.open("POST", "https://accounts.designbold.com/v2/oauth/token");
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.send(data);
-    });
-
-    rfToken.then(function(value){
-        var obj = JSON.parse(value);
-        if(obj.access_token){
-            DBMN.setCookie ('access_token', obj.access_token, 1);
-        }
-    })
-    .catch(function(rej){
-        if(rej == 406){
-            if(DBMN.i_refresh <= 5){
-                DBMN.i_refresh++;
-                DBMN.refreshToken(refresh_token);
+        userInfo.then(function(value){
+            DBMN.userInfoAPI = JSON.parse(value);
+            if (DBMN.userInfoAPI.response.user.hash_id !== 'guest') {
+                var user_template = _.template($('#db_user_nav_tmpl').html());
+                $('#designbold_user_info').html(user_template({
+                    user : DBMN.userInfoAPI.response.account,
+                })).show();
             }else{
-                DBMN.delete_cookie('access_token');
-                DBMN.delete_cookie('refresh_token');
-                DBMN.getUserInfo(DBMN.access_token_default);
-                location.reload();
+                var box_login_signup_tmp = _.template($('#db_user_designbold_login_nav_tmpl').html());
+                $('#designbold_login_nav').html(box_login_signup_tmp({}));
             }
-        }
-    })
+        })
+        .catch(function(rej){
+            console.log(rej);
+        })
+    }
 }
 
-DBMN.getUserInfo = function(access_token){
-
-    var userInfo = new Promise (function (resolve, reject){
-        var data = null;
-
-        var xhr = new XMLHttpRequest();
-        xhr.withCredentials = false;
-
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                if(xhr.status == 200){
-                    resolve(this.response);
-                }else{
-                    reject(this.statusText);
-                }
-            }
-        });
-
-        xhr.open("GET", "https://api.designbold.com/v3/user/me");
-        xhr.setRequestHeader("Authorization", "Bearer " + access_token);
-        xhr.send(data);
-    });
-
-    userInfo.then(function(value){
-        DBMN.userInfoAPI = JSON.parse(value);
-        if (DBMN.userInfoAPI.response.user.hash_id !== 'guest') {
-            var user_template = _.template($('#db_user_nav_tmpl').html());
-            $('#designbold_user_info').html(user_template({
-                user : DBMN.userInfoAPI.response.account,
-            })).show();
-        }else{
-            var box_login_signup_tmp = _.template($('#db_user_designbold_login_nav_tmpl').html());
-            $('#designbold_login_nav').html(box_login_signup_tmp);
-        }
-    })
-    .catch(function(rej){
-        console.log(rej);
-    })
-}
-
-window.signUpComplete = function(access_token, refresh_token){
-    DBMN.setCookie ('access_token', access_token, 1);
-    DBMN.setCookie ('refresh_token', refresh_token, 1095);
+window.signUpComplete = function(){
     location.reload();
 }
 
 DBMN.logout = function(){
-    DBMN.delete_cookie('access_token');
-    DBMN.delete_cookie('refresh_token');
-    location.reload();
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": dbtopbarconfig.logout_url,
+        "method": "GET",
+        "headers": {
+        "cache-control": "no-cache"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        location.reload();
+    });
 }
 
 DBMN.checkLogin();

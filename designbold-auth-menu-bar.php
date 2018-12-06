@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Plugin Name: Designit Menu
 Plugin URI: https://www.designbold.com/collection/create-new
 Description: Desingbold designit build plugin allow create a menu
@@ -35,6 +35,8 @@ define( 'DBMN', ucwords( str_replace( '-', ' ', dirname( DBMN_BASENAME ) ) ) );
 define( 'DBMN_ADMIN_INC', DBMN_URL . 'admin' );
 define( 'DBMN_ASSETS_INC', DBMN_URL . 'assets' );
 define( 'DBMN_TEMP_INC', DBMN_URL . 'templates' );
+
+define( 'DESIGNBOLD_USER_METADATA', 'dbmenu_info_user' );
 
 /**
  * The code that runs during plugin activation (but not during updates).
@@ -91,17 +93,6 @@ function dbmenu_namespace_scripts_styles() {
 	wp_enqueue_script( 'dbmenu_bootstrap.min.js', $dir . 'js/bootstrap.min.js');
 	wp_enqueue_script( 'dbmenu_main.js', $dir . 'js/main.js');
 	wp_enqueue_script( 'dbmenu_designbold_sdk.js', $dir . 'js/designbold_sdk.js', array(), time());
-
-	wp_localize_script( 'dbmenu_designbold_sdk.js', 'dbtopbarconfig', array(
-		'baseUrl' => get_option('siteurl') != '' ? get_option('siteurl') : "",
-		'pluginUrl' => DBMN_URL . 'designbold.php',
-		'options' => array (
-			'app_key' => get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "",
-			'app_redirect_url'  => admin_url('admin-ajax.php?action=db-process-login')
-		),
-		'safari_url' => admin_url('admin-ajax.php?action=db-process-login&db_action=connect'),
-		'logo_white' => DBMN_ASSETS_INC . '/images/logo_white.svg'
-	) );
 }
 
 // Registers a navigation menu location for a theme.
@@ -182,7 +173,64 @@ function db_save_option() {
 	exit(0);
 }
 
-// Handle login through designbold.php
+// Insert /Update a user into the database. But not sending a password change email.
+function dbmenu_insert_user( $userdata ){
+	return wp_insert_user( $userdata );
+}
+
+// Returns the user ID if the user exists or false if the user doesn't exist.
+function dbmenu_username_exists( $username ){
+	return username_exists( $username );
+}
+
+// Set current user
+function dbmenu_set_current_user( $user_id ) {
+	$user = get_user_by( 'id', $user_id );  
+	if( $user ) {
+		wp_set_current_user( $user_id, $user->user_login );
+		wp_set_auth_cookie( $user_id );
+		do_action( 'wp_login', $user->user_login );
+	}
+}
+
+// Update/ insert user meta data
+function dbmenu_define_user_metadata( $user_id = 0, $metaname = NULL, $data = NULL){
+	if( $user_id !== 0 && $metaname !== NULL){
+		update_user_meta( $user_id, $metaname, $data );	
+	}
+}
+
+// Check user meta data exits.
+function dbmenu_get_user_metadata_exits( $user_id = NULL ){
+	$user_id = $user_id != NULL ? $user_id : get_current_user_id();
+	if( $user_id !== 0 ){
+		return get_user_meta( $user_id, 'dbmenu_info_user', true );
+	}
+}
+
+// show_admin_bar( false );
+// add_action('plugins_loaded', 'test_111');
+// function test_111(){
+// 	wp_set_current_user( 14, 'tranviethiepdz' );
+// 	wp_set_auth_cookie( 14 );
+// 	do_action( 'wp_login', 'tranviethiepdz' );
+// 	// var_dump(wp_get_current_user());
+// }
+
+/**
+ * Ajax process logout
+ * Create endpoind to handle logout
+ */
+add_action('wp_ajax_nopriv_db-process-logout', 'db_process_logout');
+add_action('wp_ajax_db-process-logout', 'db_process_logout');
+function db_process_logout(){
+	wp_logout();
+}
+
+/**
+ * Ajax process login
+ * Create endpoind to handle login
+ */
 add_action('wp_ajax_nopriv_db-process-login', 'db_process_login');
 add_action('wp_ajax_db-process-login', 'db_process_login');
 function db_process_login() {
@@ -198,3 +246,250 @@ function db_process_login() {
 		exit(0);
 	}
 }
+
+/**
+ * Custome hook to 
+ * insert/ update account when click login,
+ * insert/ update user meta data by user
+ * set current user login
+*/
+add_action('designbold_auth_menu_bar_save_account', 'dbmenu_save_account', $priority = 10, $accepted_args = 2);
+function dbmenu_save_account( $access_token = NULL, $refresh_token = NULL ){
+	if( $access_token !== '' && $refresh_token != '' ){
+		$ch = curl_init();
+
+		$options = array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => "https://api.designbold.com/v3/user/me?",
+			CURLOPT_HTTPHEADER => array(
+				"Content-Type: application/x-www-form-urlencoded",
+				'cache-control: no-cache',
+				'Authorization: Bearer ' . $access_token,
+			)
+		);
+
+		curl_setopt_array($ch, $options);
+
+		$response = curl_exec($ch);
+
+		$result = json_decode($response, true);
+
+		if( $result !== '' ) :
+
+			$user = $result['response']['user'];
+			$account = $result['response']['account'];
+			$website = "https://designbold.com";
+
+			$userdata = array(
+				'user_login'  =>  $user['username'],
+				'user_url'    =>  $website,
+				'user_pass'   =>  ''
+			);
+
+			$user_metadata = array(
+				'user_name' => $user['username'],
+				'email' => $account['email'],
+				'group_id' => $account['group_id'],
+				'name' => $account['name'],
+				'avatar' => $account['avatar'],
+				'budget' => $account['budget'],
+				'budget_bonus' => $account['budget_bonus'],
+				'slug' => $account['slug'],
+				'hash_id' => $account['hash_id'],
+				'first_name' => $account['hash_id'],
+				'last_name' => $account['hash_id'],
+			);
+
+			$user_id = dbmenu_username_exists( $user['username'] );
+			if( $user_id ) :
+				// Set current user
+				dbmenu_set_current_user( $user_id );
+
+				// Update/ insert user meta data
+				dbmenu_define_user_metadata( $user_id, 'dbmenu_info_user', $user_metadata );
+				dbmenu_define_user_metadata( $user_id, 'dbmenu_access_token', $access_token );
+				dbmenu_define_user_metadata( $user_id, 'dbmenu_refresh_token', $refresh_token );
+
+			else :
+				// Insert/ update user to database
+				$new_user_id = dbmenu_insert_user( $userdata );
+
+				// Set current user
+				dbmenu_set_current_user( $new_user_id );
+
+				// Update/ insert user meta data
+				dbmenu_define_user_metadata( $new_user_id, 'dbmenu_info_user', $user_metadata );
+				dbmenu_define_user_metadata( $new_user_id, 'dbmenu_access_token', $access_token );
+				dbmenu_define_user_metadata( $new_user_id, 'dbmenu_refresh_token', $refresh_token );
+			endif;
+		endif;
+	}
+}
+
+/**
+ * Custome hook to check validate access token ever reload website
+ * 
+*/
+add_action('plugins_loaded', 'dbmenu_validate_access_token');
+function dbmenu_validate_access_token() {
+	$wp_current_user_info = wp_get_current_user();
+	do_action('designbold_auth_menu_bar_remove_admin_bar');
+	if( $wp_current_user_info->ID !== 0 ) :
+		// Get dbmenu_access_token in wp_usermeta table
+		$access_token = get_user_meta( $wp_current_user_info->ID, 'dbmenu_access_token', true );
+		$refresh_token = get_user_meta( $wp_current_user_info->ID, 'dbmenu_refresh_token', true );
+
+		if( $access_token !== '' && $refresh_token !== '' ) :
+			/**
+			 * status_expires = 200 : success.
+			 * status_expires = 204 : access token invalid.
+			*/
+			$status_expires = do_action('designbold_auth_menu_bar_check_access_token_expires', $access_token);
+
+			if( $status_expires == 204 ){
+				/**
+				 * status = 200 => success.
+				 * status = 406 : refresh token expires.
+				 * status = 500 : not create access token.
+				*/
+				$status = do_action('designbold_auth_menu_bar_refresh_access_token', $refresh_token, $wp_current_user_info->ID);
+
+				if( $status == 200 ) :
+					dbmenu_set_current_user( $wp_current_user_info->ID );
+				else : // 406 || 500
+					dbmenu_define_user_metadata( $wp_current_user_info->ID, 'dbmenu_access_token', '' );
+				endif;
+			}
+		endif;
+	endif;
+}
+
+/**
+ * Custome hook to check access token expires
+ * Status = 200 : success.
+ * Status = 204 : access token invalid.
+*/
+add_action('designbold_auth_menu_bar_check_access_token_expires', 'dbmenu_check_access_token_expires', 10, 1);
+function dbmenu_check_access_token_expires( $access_token = NULL ){
+	if ($access_token !== NULL) :
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://accounts.designbold.com/v2/oauth/tokeninfo",
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_CUSTOMREQUEST => "POST",
+			CURLOPT_POSTFIELDS => "access_token=" . $access_token,
+			CURLOPT_HTTPHEADER => array(
+				"Content-Type: application/x-www-form-urlencoded"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+		curl_close($curl);
+
+		return $status;
+	endif;
+}
+
+/**
+ * Custome hook to refresh access token
+ * If refresh success then save new access token result to wp_usermeta table in database with 
+ * meta_key = dbmenu_access_token
+ * If refresh error then do it again 5 times.
+ * If in 5 times with 1 success then save data 
+ * dbmenu_access_token = new access token 
+ * else  
+ * dbmenu_access_token = empty string
+*/
+add_action('designbold_auth_menu_bar_refresh_access_token', 'dbmenu_refresh_access_token', 10, 2);
+function dbmenu_refresh_access_token( $refresh_token = NULL, $user_id = 0) {
+	$refresh_token_df = 'b0f99ceb3d596cb8e7152088548c41e981920c0bd92312047fd8e75b9eee440d';
+	// $refresh_token = '2bv0O7ADlj4WkR38mxLB8MdnpP6KozwrVygZNEbq';
+	$refresh_token = $refresh_token !== NULL ? $refresh_token : $refresh_token_df;
+	
+	if( $user_id !== 0 ) :
+		$curl = curl_init();
+		$app_key = get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "";
+		$app_redirect_url = admin_url('admin-ajax.php?action=db-process-login');
+		$data = "app_key=" . $app_key . "&redirect_uri=" . $app_redirect_url . "&grant_type=refresh_token&refresh_token=" . $refresh_token . "&undefined=";
+		
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://accounts.designbold.com/v2/oauth/token",
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_CUSTOMREQUEST => "POST",
+			CURLOPT_POSTFIELDS => $data,
+			CURLOPT_HTTPHEADER => array(
+				"Content-Type: application/x-www-form-urlencoded",
+			),
+		));
+
+		$res_data = '';
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+		/**
+		 * Status = 200 => success.
+		 * status = 406 : refresh token expires.
+		 * status = 500 : not create access token.
+		*/
+		if( $status == 200 ){
+			$res_data = json_decode($response, true);
+			// Update/ insert user meta data
+			dbmenu_define_user_metadata( $user_id, 'dbmenu_access_token', $res_data['access_token'] );
+		}
+		elseif ( $status == 406 || $status == 500 ) {
+			for ( $i = 0; $i < 5; $i++ ) {
+				do_action('designbold_auth_menu_bar_refresh_access_token', $refresh_token, $user_id);
+			}
+		}
+		
+		curl_close($curl);
+		return $status;
+	endif;
+}
+
+/**
+ * Disable admin bar for all users except for administrator
+*/
+add_action('designbold_auth_menu_bar_remove_admin_bar', 'dbmenu_remove_admin_bar');
+function dbmenu_remove_admin_bar() {
+	if (!current_user_can('administrator') && !is_admin()) {
+	  	show_admin_bar(false);
+	}
+}
+
+add_action( 'wp_enqueue_scripts', 'dbmenu_config_option' );
+function dbmenu_config_option(){
+	$current_user = wp_get_current_user();
+	$current_user_id = $current_user->ID;
+	$user_metadata = array();
+	$access_token = '';
+	$refresh_token = '';
+
+	// Check if isset user meta data return value
+	if( $current_user_id !== 0 ){
+		$user_metadata = get_user_meta( $current_user_id, 'dbmenu_info_user', true );
+		$access_token = get_user_meta( $current_user_id, 'dbmenu_access_token', true );
+		$refresh_token = get_user_meta( $current_user_id, 'dbmenu_refresh_token', true );
+	}
+	
+	wp_localize_script( 'dbmenu_designbold_sdk.js', 'dbtopbarconfig', array(
+		'baseUrl' => get_option('siteurl') != '' ? get_option('siteurl') : "",
+		'pluginUrl' => DBMN_URL . 'designbold.php',
+		'options' => array (
+			'app_key' => get_option('dbmenu_option_app_key') != '' ? get_option('dbmenu_option_app_key') : "",
+			'app_redirect_url'  => admin_url('admin-ajax.php?action=db-process-login')
+		),
+		'safari_url' => admin_url('admin-ajax.php?action=db-process-login&db_action=connect'),
+		'logo_white' => DBMN_ASSETS_INC . '/images/logo_white.svg',
+		'access_token' => $access_token,
+		'refresh_token' => $refresh_token,
+		'logout_url' => admin_url('admin-ajax.php?action=db-process-logout')
+	) );
+}
+
