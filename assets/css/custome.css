@@ -6,10 +6,7 @@
 	line-height: 20px;
 }
 body.designitmenu{
-
-}
-body.logged-in.admin-bar{
-	margin-top: 50px !important;
+	padding-top: 50px;
 }
 body.logged-in.admin-bar header.db-header {
 	top: 32px;
@@ -68,4 +65,7 @@ body.logged-in.admin-bar header.db-header {
 }
 .db-header .main-menu > ul > li ul li a{
 	font-weight: normal;
+}
+.designitmenu .site-header.header-style-6.full-width .content-wrap.pinned {
+    padding-top: 50px;
 }

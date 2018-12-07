@@ -211,6 +211,15 @@ function dbmenu_get_user_metadata_exits( $user_id = NULL ){
 }
 
 /**
+ * Function get user meta data by user_id
+ * if success then return value of meta data
+ * else false then return empty
+*/
+function dbmenu_get_user_metadata_by_user_id_and_meta_key( $user_id = NULL, $meta_key = NULL ){
+	if( $user_id !== NULL ){
+		return get_user_meta( $user_id, $meta_key, true );
+	}
+}
  * Ajax process logout
  * Create endpoind to handle logout
  */
@@ -520,17 +529,17 @@ function dbmenu_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
     	$user_metadata = dbmenu_get_user_metadata_by_user_id_and_meta_key( $user->data->ID, 'dbmenu_info_user' );
 
     	if( isset( $user_metadata['avatar'] ) ){
-    		$src = $user_metadata['avatar'];
+    		$avatar = $user_metadata['avatar'];
     	}else{
-    		$src = get_avatar_url( $id_or_email, $args = null);
+    		$avatar = get_avatar_url( $id_or_email, $args = null);
     	}
 
     	if( isset( $user_metadata['name'] ) ){
     		$alt = $user_metadata['name'];
     	}
 
-        $image = "<img alt='{$alt}' src='{$src}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+        $avatar = "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
     }
 
-    return $image;
+    return $avatar;
 }
