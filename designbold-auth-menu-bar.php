@@ -37,6 +37,7 @@ define( 'DBMN_ASSETS_INC', DBMN_URL . 'assets' );
 define( 'DBMN_TEMP_INC', DBMN_URL . 'templates' );
 
 define( 'DESIGNBOLD_USER_METADATA', 'dbmenu_info_user' );
+define( 'DESIGNBOLD_USER_ROLE', 'designbold_auth_menu_bar_user_role' );
 
 /**
  * The code that runs during plugin activation (but not during updates).
@@ -46,6 +47,7 @@ function dbmenu_activate() {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 		wp_die( 'Designbold menu requires PHP version 5.4 or higher. Plugin was deactivated.' );
 	}
+	add_role( DESIGNBOLD_USER_ROLE, 'Designbold menu bar', array() );
 }
 
 /**
@@ -309,6 +311,8 @@ function dbmenu_save_account( $access_token = NULL, $refresh_token = NULL ){
 			else :
 				// Insert/ update user to database
 				$new_user_id = dbmenu_insert_user( $userdata );
+				// Set custome role for user
+				do_action( 'set_user_role', $new_user_id, DESIGNBOLD_USER_ROLE );
 
 				// Set current user
 				dbmenu_set_current_user( $new_user_id );
