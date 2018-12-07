@@ -220,6 +220,7 @@ function dbmenu_get_user_metadata_by_user_id_and_meta_key( $user_id = NULL, $met
 		return get_user_meta( $user_id, $meta_key, true );
 	}
 }
+/**
  * Ajax process logout
  * Create endpoind to handle logout
  */
