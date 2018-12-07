@@ -208,15 +208,6 @@ function dbmenu_get_user_metadata_exits( $user_id = NULL ){
 	}
 }
 
-// show_admin_bar( false );
-// add_action('plugins_loaded', 'test_111');
-// function test_111(){
-// 	wp_set_current_user( 14, 'tranviethiepdz' );
-// 	wp_set_auth_cookie( 14 );
-// 	do_action( 'wp_login', 'tranviethiepdz' );
-// 	// var_dump(wp_get_current_user());
-// }
-
 /**
  * Ajax process logout
  * Create endpoind to handle logout
@@ -498,3 +489,44 @@ function dbmenu_config_option(){
 	) );
 }
 
+/**
+* add_filter to display custome avatar
+*/
+add_filter( 'get_avatar' , 'dbmenu_custom_avatar' , 1 , 5 );
+function dbmenu_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
+    $user = false;
+
+    if ( is_numeric( $id_or_email ) ) {
+
+        $id = (int) $id_or_email;
+        $user = get_user_by( 'id' , $id );
+
+    } elseif ( is_object( $id_or_email ) ) {
+
+        if ( ! empty( $id_or_email->user_id ) ) {
+            $id = (int) $id_or_email->user_id;
+            $user = get_user_by( 'id' , $id );
+        }
+
+    } else {
+        $user = get_user_by( 'email', $id_or_email );	
+    }
+
+    if ( $user && is_object( $user ) ) {
+    	$user_metadata = dbmenu_get_user_metadata_by_user_id_and_meta_key( $user->data->ID, 'dbmenu_info_user' );
+
+    	if( isset( $user_metadata['avatar'] ) ){
+    		$src = $user_metadata['avatar'];
+    	}else{
+    		$src = get_avatar_url( $id_or_email, $args = null);
+    	}
+
+    	if( isset( $user_metadata['name'] ) ){
+    		$alt = $user_metadata['name'];
+    	}
+
+        $image = "<img alt='{$alt}' src='{$src}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+    }
+
+    return $image;
+}
