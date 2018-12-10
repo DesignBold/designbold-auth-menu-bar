@@ -220,7 +220,7 @@ function callback(){
                     $siteUrl = get_option('siteurl') != '' ? get_option('siteurl') : "";
 
                     // Action d? luu thông tin account user
-                    do_action('designbold_auth_menu_bar_save_account'); 
+                    do_action('designbold_auth_menu_bar_save_account', $designbold_sdk->access_token, $designbold_sdk->refresh_token); 
 
                     echo '
                     <script type="text/javascript">
