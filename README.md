@@ -1,10 +1,10 @@
 # designbold-auth-menu-bar
 
-Designbold DesignIt create a plugin allow append header and footer of designbold.com into your website. Features, login Designbold, design tool and follow Designbold
+DesignIt Wordpress plugin by [DesignBold](https://designbold.com) is build a plugin append header and footer of [DesignBold website](https://designbold.com) into your website. Features, login Designbold, design tool and follow Designbold.
 
-For more information, check out the [proposal repo](https://github.com/designboldgit/designbold-auth-menu-bar).
+For more information, check out the [proposal repo](https://github.com/DesignBold/designbold-auth-menu-bar).
 
-## Introduce
+## Overview
 
 Plugin use for Wordpress and integration of Designbold main menu and Designbold footer. 
 
