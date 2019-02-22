@@ -202,6 +202,13 @@ function dbmenu_define_user_metadata( $user_id = 0, $metaname = NULL, $data = NU
 	}
 }
 
+// Delete user meta data
+function dbmenu_delete_user_metadata( $user_id = 0, $metaname = NULL, $data = NULL){
+	if( $user_id !== 0 && $metaname !== NULL){
+		delete_user_meta( $user_id, $metaname, $data );	
+	}
+}
+
 // Check user meta data exits.
 function dbmenu_get_user_metadata_exits( $user_id = NULL ){
 	$user_id = $user_id != NULL ? $user_id : get_current_user_id();
@@ -227,6 +234,9 @@ function dbmenu_get_user_metadata_by_user_id_and_meta_key( $user_id = NULL, $met
 add_action('wp_ajax_nopriv_db-process-logout', 'db_process_logout');
 add_action('wp_ajax_db-process-logout', 'db_process_logout');
 function db_process_logout(){
+	$user_id = get_current_user_id();
+	dbmenu_delete_user_metadata($user_id, 'dbmenu_access_token');
+	dbmenu_delete_user_metadata($user_id, 'dbmenu_refresh_token');
 	wp_logout();
 }
 
