@@ -428,7 +428,6 @@ function dbmenu_check_access_token_expires( $access_token = NULL ){
 add_action('designbold_auth_menu_bar_refresh_access_token', 'dbmenu_refresh_access_token', 10, 2);
 function dbmenu_refresh_access_token( $refresh_token = NULL, $user_id = 0) {
 	$refresh_token_df = 'b0f99ceb3d596cb8e7152088548c41e981920c0bd92312047fd8e75b9eee440d';
-	// $refresh_token = '2bv0O7ADlj4WkR38mxLB8MdnpP6KozwrVygZNEbq';
 	$refresh_token = $refresh_token !== NULL ? $refresh_token : $refresh_token_df;
 	
 	if( $user_id !== 0 ) :
