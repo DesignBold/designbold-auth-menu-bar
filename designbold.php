@@ -37,7 +37,7 @@ class DesignboldSampleSdk {
             $this->base_url = "https://alpha.designbold.com/". $this->sdk_version ."/";
         }
         else{
-            $this->base_url = "https://designbold.com/". $this->sdk_version ."/";
+            $this->base_url = "https://www.designbold.com/". $this->sdk_version ."/";
         }
         if ($this->internal_debug){
             $this->base_api_url = "https://api-alpha.designbold.com/" . $this->sdk_version . "/";
@@ -49,7 +49,7 @@ class DesignboldSampleSdk {
             $this->base_account_url = "https://accounts-alpha.designbold.com/";
         }
         else{
-            $this->base_account_url = "https://accounts-alpha.designbold.com/";
+            $this->base_account_url = "https://accounts.designbold.com/";
         }
         $this->urls = [
             "auth" => $this->base_url . "authentication",
